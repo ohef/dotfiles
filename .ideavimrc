@@ -1,0 +1,65 @@
+let mapleader="\<space>"
+
+"General
+nnoremap <leader>c :action CommentByLineComment<enter>
+nnoremap <leader>rr :action RefactoringMenu<enter>
+noremap <leader>b :action ToggleLineBreakpoint<enter>
+noremap <leader>dd :action Debug<enter>
+noremap <leader>hn :action SelectInProjectView<enter>
+"noremap <leader>hn :action ActivateProjectToolWindow<enter>
+"noremap <leader>hh :action Switcher<enter>
+nmap <leader>hh <Action>(Switcher)
+noremap <leader>ri :action Inline<enter>
+noremap <leader>rn :action RenameElement<enter>
+nmap <leader>gr "*gr
+noremap <leader>rc :action ChangeSignature<enter>
+noremap <leader>rs :w<enter>:source ~\.ideavimrc<enter>
+noremap <leader>re :e ~\.ideavimrc<enter>
+noremap <leader>rv :action IntroduceVariable<enter>
+nnoremap <leader>rp :.,$s/<c-r>"/<c-r>./gc<enter>
+vnoremap <leader>c :action CommentByLineComment<enter>
+vnoremap <leader>rr :action RefactoringMenu<enter>
+noremap <leader>y "*y
+noremap <leader>p "*p
+noremap <leader>P "*P
+noremap <leader>f :action ActivateFavoritesToolWindow<enter>
+noremap <leader>t :action AddToFavorites<enter>
+nnoremap <A-j> :action MoveStatementDown<enter>
+nnoremap <A-k> :action MoveStatementUp<enter>
+vnoremap <A-k> :action MoveLineUp<enter>
+vnoremap <A-j> :action MoveLineDown<enter>
+
+map gs %
+map s <Plug>(easymotion-prefix)
+map <A-l> gt
+map <A-h> gT
+map <A-o> <C-o>
+map <A-e> <C-i>
+nnoremap ' `
+nnoremap Y y$
+nnoremap S /
+nnoremap ; ?
+noremap H ^
+noremap L $
+nnoremap gh H
+nnoremap gl L
+map <a-w> [w
+map <a-b> [b
+map <leader>x :x<enter>
+ 
+set ignorecase
+set number
+set NERDTree
+set easymotion
+set surround
+set ideajoin
+set ReplaceWithRegister
+
+"Unreal Centric
+noremap <leader>df :action RiderLink.StartUnreal<enter>
+noremap <leader>dg :action RiderLink.StopUnreal<enter>
+nnoremap <leader>un :action Rider.NewFileFromTemplate<enter>
+
+"C++ Centric 
+noremap <leader>ht :action SwitchHeaderSource<enter>
+imap \. ->

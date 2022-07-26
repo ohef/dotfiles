@@ -65,6 +65,8 @@ noremap L $
 nnoremap gh H
 nnoremap gl L
 
+imap (( ()<left>
+nnoremap gp dET(P
 map <a-w> [w
 map <a-b> [b
 map <A-l> gt
@@ -81,13 +83,13 @@ noremap <F2> :NERDTreeFind<CR>
 map s <Plug>(easymotion-prefix)
 noremap <leader>y "*y
 noremap <leader>p "*p
-noremap S /
+nnoremap S /
 noremap Y y$
 "
 if has('gui_running')
   "colorscheme solarized
   colorscheme dracula
-  set background=light
+  set background=dark
   set guifont=Inconsolata:h14:cANSI
   set guioptions-=T
   set guioptions-=m 
