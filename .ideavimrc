@@ -1,6 +1,7 @@
 let mapleader="\<space>"
 
-"General
+noremap <leader>rs :source /Users/ohefnawi/.ideavimrc<enter>
+noremap <leader>re :e /Users/ohefnawi/.ideavimrc<enter>
 nnoremap <leader>c :action CommentByLineComment<enter>
 nnoremap <leader>rr :action RefactoringMenu<enter>
 noremap <leader>b :action ToggleLineBreakpoint<enter>
@@ -13,8 +14,6 @@ noremap <leader>ri :action Inline<enter>
 noremap <leader>rn :action RenameElement<enter>
 nmap <leader>gr "*gr
 noremap <leader>rc :action ChangeSignature<enter>
-noremap <leader>rs :w<enter>:source ~\.ideavimrc<enter>
-noremap <leader>re :e ~\.ideavimrc<enter>
 noremap <leader>rv :action IntroduceVariable<enter>
 nnoremap <leader>rp :.,$s/<c-r>"/<c-r>./gc<enter>
 vnoremap <leader>c :action CommentByLineComment<enter>
@@ -24,13 +23,18 @@ noremap <leader>p "*p
 noremap <leader>P "*P
 noremap <leader>f :action ActivateFavoritesToolWindow<enter>
 noremap <leader>t :action AddToFavorites<enter>
+nnoremap <leader>hh :action Switcher<enter><enter>
+nnoremap <A-l> gt
+nnoremap <A-h> gT
+nnoremap <A-o> <C-o>
+nnoremap <A-e> <C-i>
 nnoremap <A-j> :action MoveStatementDown<enter>
 nnoremap <A-k> :action MoveStatementUp<enter>
 vnoremap <A-k> :action MoveLineUp<enter>
 vnoremap <A-j> :action MoveLineDown<enter>
 
 map gs %
-map s <Plug>(easymotion-prefix)
+nmap s <Plug>(easymotion-prefix)
 map <A-l> gt
 map <A-h> gT
 map <A-o> <C-o>
@@ -39,16 +43,15 @@ nnoremap ' `
 nnoremap Y y$
 nnoremap S /
 nnoremap ; ?
-noremap H ^
-noremap L $
 nnoremap gh H
 nnoremap gl L
-map <a-w> [w
-map <a-b> [b
-map <leader>x :x<enter>
- 
+nnoremap H ^
+nnoremap L $
+nnoremap ' `
+
 set ignorecase
 set number
+set relativenumber
 set NERDTree
 set easymotion
 set surround
