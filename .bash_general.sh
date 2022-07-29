@@ -28,4 +28,4 @@ export PS1="\${PS_FILL}\[\033[0G\]${PS_INFO} ${PS_GIT}${PS_TIME}\n${RESET}\$ "
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 ! [ -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm 
-tmux source-file .tmux.conf
+[ -n "$TMUX" ] && tmux source-file .tmux.conf
