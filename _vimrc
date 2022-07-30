@@ -71,7 +71,7 @@ map <a-w> [w
 map <a-b> [b
 map <A-l> gt
 map <A-h> gT
-map <A-o> <C-o>
+nnoremap <A-o> <C-o>
 map <A-e> <C-i>
 
 "If you have a vimrc in the current directory then it'll use it?
@@ -108,3 +108,5 @@ runtime macros/matchit.vim
 set relativenumber
 set ignorecase
 
+"Coc backends
+"coc-rust-analyzer
