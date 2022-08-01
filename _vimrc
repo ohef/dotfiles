@@ -80,8 +80,13 @@ set exrc
 
 colorscheme dracula
 set background=dark
-set guifont=Inconsolata:h14:cANSI
 highlight Pmenu ctermfg=white ctermbg=black
+
+if has('gui_running')
+  set guifont=Inconsolata:h14:cANSI
+  set guioptions-=T
+  set guioptions-=m
+endif
 
 set backspace=indent,eol,start
 set relativenumber
