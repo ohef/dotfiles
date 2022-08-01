@@ -63,6 +63,7 @@ map <A-h> gT
 map <A-o> <C-o>
 map <A-e> <C-i>
 imap <A-t> (
+imap <A-h> {
 
 "Function keys
 noremap <F1> :NERDTreeToggle<CR>
