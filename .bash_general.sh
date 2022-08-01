@@ -1,4 +1,7 @@
 alias ranger=". ranger"
+alias bat='batcat'
+
+TERM=xterm-256color
 
 #https://gist.github.com/mkottman/1936195
 RESET="\[\033[0m\]"

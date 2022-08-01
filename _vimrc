@@ -27,6 +27,7 @@ Plug 'metakirby5/codi.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'LunarWatcher/auto-pairs', {'branch': 'develop'}
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()            " required
 filetype plugin indent on     " required!
@@ -63,9 +64,6 @@ map <A-o> <C-o>
 map <A-e> <C-i>
 imap <A-t> (
 
-"If you have a vimrc in the current directory then it'll use it?
-set exrc
-
 "Function keys
 noremap <F1> :NERDTreeToggle<CR>
 noremap <F2> :NERDTreeFind<CR>
@@ -74,26 +72,26 @@ noremap <leader>y "*y
 noremap <leader>p "*p
 nnoremap S /
 noremap Y y$
-"
-if has('gui_running')
-  "colorscheme solarized
-  colorscheme dracula
-  set background=dark
-  set guifont=Inconsolata:h14:cANSI
-  set guioptions-=T
-  set guioptions-=m 
-endif
+nnoremap gs %
+
+"If you have a vimrc in the current directory then it'll use it?
+set exrc
+
+colorscheme dracula
+set background=dark
+set guifont=Inconsolata:h14:cANSI
+highlight Pmenu ctermfg=white ctermbg=black
+
 set backspace=indent,eol,start
+set relativenumber
+set ignorecase
 
 "Text editing stuff
 au BufNewFile,BufRead *.txt set spell spelllang=en_us
 
-set foldmethod=manual
+"set foldmethod=manual
 
 runtime macros/matchit.vim
-
-set relativenumber
-set ignorecase
 
 "Coc backends
 "coc-rust-analyzer
@@ -117,3 +115,11 @@ nmap <leader>rn <Plug>(coc-rename)
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>rv  <Plug>(coc-codeaction-selected)
+nmap <leader>rv  <Plug>(coc-codeaction-selected)
+
+"xmap <leader>ac <Plug>(coc-codeaction-cursor)
+"nmap <leader>ac <Plug>(coc-codeaction-cursor)
