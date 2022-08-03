@@ -9,6 +9,8 @@ RED="\[\033[0;31m\]"
 GREEN="\[\033[01;32m\]"
 BLUE="\[\033[01;34m\]"
 YELLOW="\[\033[0;33m\]"
+
+# tput cnorm
  
 #PS_LINE=`printf -- '- %.0s' {1..200}`
 function parse_git_branch {
@@ -32,3 +34,4 @@ export PS1="\${PS_FILL}\[\033[0G\]${PS_INFO} ${PS_GIT}${PS_TIME}\n${RESET}\$ "
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 ! [ -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm 
 [ -n "$TMUX" ] && tmux source-file "$HOME/.tmux.conf"
+tput cnorm

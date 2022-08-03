@@ -21,6 +21,8 @@ Plug 'Shougo/vimproc.vim', {
       \    },
       \ }
 Plug 'dracula/vim', { 'name': 'dracula' }
+Plug 'SirVer/ultisnips'
+Plug 'tpope/vim-fugitive'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-abolish' 
 Plug 'metakirby5/codi.vim'
@@ -28,6 +30,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'LunarWatcher/auto-pairs', {'branch': 'develop'}
 Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()            " required
 filetype plugin indent on     " required!
