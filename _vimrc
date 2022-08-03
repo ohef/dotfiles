@@ -49,6 +49,27 @@ nnoremap <leader>rp :.,$s/<c-r>"/<c-r>./gc<enter>
 nnoremap <leader>hn :NERDTreeFocus<enter>
 nnoremap <leader>rs :w<enter>:source $MYVIMRC<enter>
 nnoremap <leader>re :e $MYVIMRC<enter>
+nnoremap <leader>ff :Files<enter>
+nnoremap <leader>fg :GFiles<enter>
+nnoremap <leader>fc :GFiles?<enter>
+nnoremap <leader>fb :Buffers<enter>
+nnoremap <leader>fs :Snippets<enter>
+nnoremap <leader>fd :Commits<enter>
+
+noremap <leader>y "*y
+noremap <leader>p "*p
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>rv  <Plug>(coc-codeaction-selected)
+nmap <leader>rv  <Plug>(coc-codeaction-selected)
 
 nnoremap ' `
 nnoremap Y y$
@@ -73,8 +94,6 @@ imap <A-h> {
 noremap <F1> :NERDTreeToggle<CR>
 noremap <F2> :NERDTreeFind<CR>
 map s <Plug>(easymotion-prefix)
-noremap <leader>y "*y
-noremap <leader>p "*p
 nnoremap S /
 noremap Y y$
 nnoremap gs %
@@ -118,18 +137,6 @@ endfunction
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>rv  <Plug>(coc-codeaction-selected)
-nmap <leader>rv  <Plug>(coc-codeaction-selected)
 
 "xmap <leader>ac <Plug>(coc-codeaction-cursor)
 "nmap <leader>ac <Plug>(coc-codeaction-cursor)
