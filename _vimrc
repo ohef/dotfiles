@@ -55,6 +55,12 @@ nnoremap <leader>fc :GFiles?<enter>
 nnoremap <leader>fb :Buffers<enter>
 nnoremap <leader>fs :Snippets<enter>
 nnoremap <leader>fd :Commits<enter>
+nnoremap <leader>a :Maps<enter>
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
 
 noremap <leader>y "*y
 noremap <leader>p "*p
@@ -80,6 +86,11 @@ nnoremap gh H
 nnoremap gl L
 
 nnoremap gp dET(P
+
+execute "set <A-o>=\eo"
+execute "set <A-e>=\ee"
+execute "set <A-t>=\et"
+execute "set <A-h>=\eh"
 
 map <a-w> [w
 map <a-b> [b
