@@ -124,8 +124,9 @@ nnoremap gs %
 set exrc
 
 colorscheme dracula
+
 "set background=dark
-"highlight Pmenu ctermfg=white ctermbg=black
+highlight Pmenu ctermfg=white ctermbg=black guibg=#282a36
 
 if has('gui_running')
   set guifont=Inconsolata:h14:cANSI
