@@ -32,6 +32,7 @@ Plug 'LunarWatcher/auto-pairs', {'branch': 'develop'}
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'chrisbra/Colorizer'
 
 call plug#end()            " required
 filetype plugin indent on     " required!
