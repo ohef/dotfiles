@@ -49,7 +49,7 @@ highlight LineNr ctermfg=blue ctermbg=Black
 nnoremap <leader>rp :.,$s/<c-r>"/<c-r>./gc<enter>
 nnoremap <leader>hn :NERDTreeFocus<enter>
 nnoremap <leader>rs :w<enter>:source $MYVIMRC<enter>
-nnoremap <leader>re :e $MYVIMRC<enter>
+nnoremap <leader>re :e! $MYVIMRC<enter>
 nnoremap <leader>ff :Files<enter>
 nnoremap <leader>fg :GFiles<enter>
 nnoremap <leader>fc :GFiles?<enter>
@@ -146,6 +146,8 @@ function! ShowDocumentation()
     call feedkeys('K', 'in')
   endif
 endfunction
+
+let g:airline_theme='dracula'
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')

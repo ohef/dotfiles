@@ -1,5 +1,6 @@
 alias ranger=". ranger"
 alias bat='batcat'
+alias fastCheckout='__git_dwim_remote_heads | fzf | xargs git checkout'
 
 TERM=xterm-256color
 
@@ -34,4 +35,4 @@ export PS1="\${PS_FILL}\[\033[0G\]${PS_INFO} ${PS_GIT}${PS_TIME}\n${RESET}\$ "
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 ! [ -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 
 [ -n "$TMUX" ] && tmux source-file "$HOME/.tmux.conf"
-tput cnorm
+#tput cnorm
