@@ -57,6 +57,7 @@ nnoremap <leader>fb :Buffers<enter>
 nnoremap <leader>fs :Snippets<enter>
 nnoremap <leader>fd :Commits<enter>
 nnoremap <leader>a :Maps<enter>
+vnoremap <leader>a :<C-U>Maps<enter>
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
