@@ -33,6 +33,9 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'chrisbra/Colorizer'
+Plug 'drn/zoomwin-vim'
+
+"Plug 'airblade/vim-gitgutter'
 
 call plug#end()            " required
 filetype plugin indent on     " required!
