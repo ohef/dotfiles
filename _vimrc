@@ -46,11 +46,18 @@ set ts=2 sw=2 expandtab
 set tw=80
 highlight LineNr ctermfg=blue ctermbg=Black
 
+function! RgWordUnderCursor()
+  let wordUnderCursor = expand("<cword>")
+  :Rg 
+  call feedkeys(wordUnderCursor)
+endfunction
+
 nnoremap <leader>rp :.,$s/<c-r>"/<c-r>./gc<enter>
 nnoremap <leader>hn :NERDTreeFocus<enter>
 nnoremap <leader>rs :w<enter>:source $MYVIMRC<enter>
 nnoremap <leader>re :e! $MYVIMRC<enter>
 nnoremap <leader>ff :Files<enter>
+nnoremap <leader>fr :call RgWordUnderCursor()<enter>
 nnoremap <leader>fg :GFiles<enter>
 nnoremap <leader>fc :GFiles?<enter>
 nnoremap <leader>fb :Buffers<enter>
@@ -58,6 +65,7 @@ nnoremap <leader>fs :Snippets<enter>
 nnoremap <leader>fd :Commits<enter>
 nnoremap <leader>a :Maps<enter>
 vnoremap <leader>a :<C-U>Maps<enter>
+nmap e <Plug>(easymotion-bd-W)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -125,7 +133,6 @@ if has('gui_running')
 endif
 
 set backspace=indent,eol,start
-set relativenumber
 set ignorecase
 
 "Text editing stuff
