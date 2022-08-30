@@ -63,6 +63,7 @@ nnoremap <leader>fc :GFiles?<enter>
 nnoremap <leader>fb :Buffers<enter>
 nnoremap <leader>fs :Snippets<enter>
 nnoremap <leader>fd :Commits<enter>
+nnoremap <leader>vv :Git<enter>
 nnoremap <leader>a :Maps<enter>
 vnoremap <leader>a :<C-U>Maps<enter>
 nmap e <Plug>(easymotion-bd-W)
