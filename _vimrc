@@ -34,8 +34,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'chrisbra/Colorizer'
 Plug 'drn/zoomwin-vim'
-Plug 'mogelbrod/vim-jsonpath'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'ohef/vim-jsonpath'
 
 call plug#end()            " required
 filetype plugin indent on     " required!
@@ -170,21 +170,10 @@ let g:airline_theme='dracula'
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#coc#show_coc_status = 1
 
-" Arguments: ([from_line=1])
-function! jsonpath#out(...) "{{{
-  "echo 'Parsing buffer...' | redraw
-  let path = jsonpath#scan_buffer([], line('.'), col('.'), get(a:, 1, 1))
-  let joined = join(path, g:jsonpath_delimeter)
-  if len(path)
-    return joined
-  else
-    return 'Empty path'
-  endif
-endfunction "}}}
-
 function! AirlineInit()
   call airline#parts#define_function('jsonpath', 'jsonpath#out')
   call airline#parts#define_condition('jsonpath', '&filetype == "json"')
+  call airline#parts#define_accent('jsonpath', 'bold')
 
   let spc = g:airline_symbols.space
   if exists("+autochdir") && &autochdir == 1
