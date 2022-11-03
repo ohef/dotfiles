@@ -35,6 +35,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'chrisbra/Colorizer'
 Plug 'drn/zoomwin-vim'
 Plug 'mogelbrod/vim-jsonpath'
+Plug 'AndrewRadev/splitjoin.vim'
 
 call plug#end()            " required
 filetype plugin indent on     " required!
@@ -119,9 +120,14 @@ imap <A-h> {
 noremap <F1> :NERDTreeToggle<CR>
 noremap <F2> :NERDTreeFind<CR>
 map s <Plug>(easymotion-prefix)
-nnoremap S /
+"map syw <Plug>(easymotion-bd-w)yw''
+"map syW <Plug>(easymotion-bd-W)yW''
+
+nmap S <Plug>(easymotion-overwin-f)
+nmap F /
 noremap Y y$
-nnoremap gs %
+nmap gs %
+xmap gs %
 
 "abbreviations 
 ab \. ->
@@ -192,3 +198,4 @@ autocmd User AirlineAfterInit call AirlineInit()
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
+let g:EasyMotion_keys='aoeuidhtnsn'
