@@ -68,3 +68,4 @@ nnoremap <leader>un :action Rider.NewFileFromTemplate<enter>
 "C++ Centric 
 noremap <leader>ht :action SwitchHeaderSource<enter>
 imap \. ->
+imap \, =>
