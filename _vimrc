@@ -131,6 +131,7 @@ xmap gs %
 
 "abbreviations 
 ab \. ->
+ab \, => 
 
 "If you have a vimrc in the current directory then it'll use it?
 set exrc
