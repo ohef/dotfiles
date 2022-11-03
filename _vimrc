@@ -163,7 +163,18 @@ endfunction
 let g:airline_theme='dracula'
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#coc#show_coc_status = 1
-"let g:airline_statusline_ontop = 1
+
+" Arguments: ([from_line=1])
+function! jsonpath#out(...) "{{{
+  "echo 'Parsing buffer...' | redraw
+  let path = jsonpath#scan_buffer([], line('.'), col('.'), get(a:, 1, 1))
+  let joined = join(path, g:jsonpath_delimeter)
+  if len(path)
+    return joined
+  else
+    return 'Empty path'
+  endif
+endfunction "}}}
 
 function! AirlineInit()
   call airline#parts#define_function('jsonpath', 'jsonpath#out')
