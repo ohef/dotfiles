@@ -34,8 +34,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'chrisbra/Colorizer'
 Plug 'drn/zoomwin-vim'
-
-"Plug 'airblade/vim-gitgutter'
+Plug 'mogelbrod/vim-jsonpath'
 
 call plug#end()            " required
 filetype plugin indent on     " required!
@@ -69,7 +68,9 @@ nnoremap <leader>fd :Commits<enter>
 nnoremap <leader>vv :Git<enter>
 nnoremap <leader>a :Maps<enter>
 vnoremap <leader>a :<C-U>Maps<enter>
-nmap e <Plug>(easymotion-bd-W)
+nnoremap <leader>ht :GFiles<enter>
+nnoremap <a-j> <c-d>
+nnoremap <a-k> <c-u>
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -115,7 +116,6 @@ map <A-e> <C-i>
 imap <A-t> (
 imap <A-h> {
 
-"Function keys
 noremap <F1> :NERDTreeToggle<CR>
 noremap <F2> :NERDTreeFind<CR>
 map s <Plug>(easymotion-prefix)
@@ -123,12 +123,14 @@ nnoremap S /
 noremap Y y$
 nnoremap gs %
 
+"abbreviations 
+ab \. ->
+
 "If you have a vimrc in the current directory then it'll use it?
 set exrc
 
 colorscheme dracula
 
-"set background=dark
 highlight Pmenu ctermfg=white ctermbg=black guibg=#282a36
 
 if has('gui_running')
@@ -142,8 +144,6 @@ set ignorecase
 
 "Text editing stuff
 au BufNewFile,BufRead *.txt set spell spelllang=en_us
-
-"set foldmethod=manual
 
 runtime macros/matchit.vim
 
@@ -161,9 +161,23 @@ function! ShowDocumentation()
 endfunction
 
 let g:airline_theme='dracula'
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#coc#show_coc_status = 1
+"let g:airline_statusline_ontop = 1
+
+function! AirlineInit()
+  call airline#parts#define_function('jsonpath', 'jsonpath#out')
+  call airline#parts#define_condition('jsonpath', '&filetype == "json"')
+
+  let spc = g:airline_symbols.space
+  if exists("+autochdir") && &autochdir == 1
+    let g:airline_section_c = airline#section#create(['%<', 'path', spc, '%<', 'jsonpath', spc, 'readonly', 'coc_status', 'lsp_progress'])
+  else
+    let g:airline_section_c = airline#section#create(['%<', 'file', spc, '%<', 'jsonpath', spc, 'readonly', 'coc_status', 'lsp_progress'])
+  endif
+
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-"xmap <leader>ac <Plug>(coc-codeaction-cursor)
-"nmap <leader>ac <Plug>(coc-codeaction-cursor)
