@@ -2,45 +2,50 @@ let mapleader="\<space>"
 
 #noremap <leader>re :e /Users/ohefnawi/.ideavimrc<enter>
 #noremap <leader>rs :source /Users/ohefnawi/.ideavimrc<enter>
-noremap <leader>rs :source ~\\.ideavimrc<enter>
-noremap <leader>re :e ~\\.ideavimrc<enter>
-nnoremap <leader>c :action CommentByLineComment<enter>
-nnoremap <leader>rr :action RefactoringMenu<enter>
-noremap <leader>b :action ToggleLineBreakpoint<enter>
-noremap <leader>dd :action Debug<enter>
-noremap <leader>hn :action SelectInProjectView<enter>
-#noremap <leader>hn :action ActivateProjectToolWindow<enter>
-#noremap <leader>hh :action Switcher<enter>
-nmap <leader>hh <Action>(Switcher)
-noremap <leader>ri :action Inline<enter>
-noremap <leader>rn :action RenameElement<enter>
-nmap <leader>gr "*gr
-noremap <leader>rc :action ChangeSignature<enter>
-noremap <leader>rv :action IntroduceVariable<enter>
-nnoremap <leader>rp :.,$s/<c-r>"/<c-r>./gc<enter>
-vnoremap <leader>c :action CommentByLineComment<enter>
-vnoremap <leader>rr :action RefactoringMenu<enter>
-noremap <leader>y "*y
-noremap <leader>p "*p
-noremap <leader>P "*P
-noremap <leader>f :action ActivateFavoritesToolWindow<enter>
-noremap <leader>t :action AddToFavorites<enter>
-nnoremap <leader>hh :action Switcher<enter><enter>
+
+imap <A-t> (
+imap <A-c> {
+imap <A-n> )
+imap <A-r> }
+map <A-u> <C-u>
+map <A-e> <C-d>
 nnoremap <A-l> gt
 nnoremap <A-h> gT
 nnoremap <A-o> <C-o>
-nnoremap <A-e> <C-i>
+nnoremap <A-i> <C-i>
 nnoremap <A-j> :action MoveStatementDown<enter>
 nnoremap <A-k> :action MoveStatementUp<enter>
 vnoremap <A-k> :action MoveLineUp<enter>
 vnoremap <A-j> :action MoveLineDown<enter>
 
+
+nmap <leader>gr "*gr
+nmap <leader>hh <Action>(Switcher)
+nnoremap <leader>c :action CommentByLineComment<enter>
+nnoremap <leader>hh :action Switcher<enter><enter>
+nnoremap <leader>rp :.,$s/<c-r>"/<c-r>./gc<enter>
+nnoremap <leader>rr :action RefactoringMenu<enter>
+nnoremap <leader>w <C-W>
+noremap <leader>P "*P
+noremap <leader>b :action ToggleLineBreakpoint<enter>
+noremap <leader>dd :action Debug<enter>
+noremap <leader>f :action ActivateFavoritesToolWindow<enter>
+noremap <leader>fr :action FindInPath<enter>
+noremap <leader>hn :action SelectInProjectView<enter>
+noremap <leader>p "*p
+noremap <leader>rc :action ChangeSignature<enter>
+noremap <leader>re :e ~\\.ideavimrc<enter>
+noremap <leader>ri :action Inline<enter>
+noremap <leader>rn :action RenameElement<enter>
+noremap <leader>rs :source ~\\.ideavimrc<enter>
+noremap <leader>rv :action IntroduceVariable<enter>
+noremap <leader>t :action AddToFavorites<enter>
+noremap <leader>y "*y
+vnoremap <leader>c :action CommentByLineComment<enter>
+vnoremap <leader>rr :action RefactoringMenu<enter>
+
 map gs %
 nmap s <Plug>(easymotion-prefix)
-map <A-l> gt
-map <A-h> gT
-map <A-o> <C-o>
-map <A-e> <C-i>
 nnoremap ' `
 nnoremap Y y$
 nnoremap S /

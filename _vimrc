@@ -36,6 +36,7 @@ Plug 'chrisbra/Colorizer'
 Plug 'drn/zoomwin-vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ohef/vim-jsonpath'
+Plug 'preservim/vim-markdown'
 
 call plug#end()            " required
 filetype plugin indent on     " required!
@@ -55,28 +56,32 @@ function! RgWordUnderCursor()
   call feedkeys(wordUnderCursor)
 endfunction
 
-nnoremap <leader>rp :.,$s/<c-r>"/<c-r>./gc<enter>
-nnoremap <leader>hn :NERDTreeFocus<enter>
-nnoremap <leader>rs :w<enter>:source $MYVIMRC<enter>
-nnoremap <leader>re :e! $MYVIMRC<enter>
-nnoremap <leader>ff :Files<enter>
-nnoremap <leader>fr :call RgWordUnderCursor()<enter>
-nnoremap <leader>fg :GFiles<enter>
-nnoremap <leader>fc :GFiles?<enter>
-nnoremap <leader>fb :Buffers<enter>
-nnoremap <leader>fs :Snippets<enter>
-nnoremap <leader>fd :Commits<enter>
-nnoremap <leader>vv :Git<enter>
 nnoremap <leader>a :Maps<enter>
-vnoremap <leader>a :<C-U>Maps<enter>
+
+nnoremap <leader>fb :Buffers<enter>
+nnoremap <leader>fc :GFiles?<enter>
+nnoremap <leader>fd :Commits<enter>
+nnoremap <leader>ff :Files<enter>
+nnoremap <leader>fg :GFiles<enter>
+nnoremap <leader>fr :call RgWordUnderCursor()<enter>
+nnoremap <leader>fs :Snippets<enter>
+
+nnoremap <leader>hn :NERDTreeFocus<enter>
 nnoremap <leader>ht :GFiles<enter>
+
+nnoremap <leader>re :e! $MYVIMRC<enter>
+nnoremap <leader>rp :.,$s/<c-r>"/<c-r>./gc<enter>
+nnoremap <leader>rs :w<enter>:source $MYVIMRC<enter>
+
+nnoremap <leader>vv :Git<enter>
+nnoremap <leader>vb :Git blame<enter>
+
+nnoremap <leader>w <C-W>
+
+vnoremap <leader>a :<C-U>Maps<enter>
+
 nnoremap <a-j> <c-d>
 nnoremap <a-k> <c-u>
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
 
 noremap <leader>y "*y
 noremap <leader>p "*p
@@ -113,9 +118,11 @@ map <a-b> [b
 map <A-l> gt
 map <A-h> gT
 map <A-o> <C-o>
-map <A-e> <C-i>
+map <A-i> <C-i>
 imap <A-t> (
 imap <A-h> {
+nmap <A-u> <C-u>
+nmap <A-e> <C-d>
 
 noremap <F1> :NERDTreeToggle<CR>
 noremap <F2> :NERDTreeFind<CR>
@@ -124,7 +131,7 @@ map s <Plug>(easymotion-prefix)
 "map syW <Plug>(easymotion-bd-W)yW''
 
 nmap S <Plug>(easymotion-overwin-f)
-nmap F /
+nmap <a-f> /
 noremap Y y$
 nmap gs %
 xmap gs %
@@ -154,6 +161,8 @@ au BufNewFile,BufRead *.txt set spell spelllang=en_us
 
 runtime macros/matchit.vim
 
+"START OF COC RIPPING ------------------------------------------------------------ 
+
 "Coc backends
 "coc-rust-analyzer
 " Use K to show documentation in preview window.
@@ -166,6 +175,45 @@ function! ShowDocumentation()
     call feedkeys('K', 'in')
   endif
 endfunction
+
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+"END OF COC RIPPING ------------------------------------------------------------ 
 
 let g:airline_theme='dracula'
 let g:airline#extensions#coc#enabled = 1
@@ -183,9 +231,14 @@ function! AirlineInit()
     let g:airline_section_c = airline#section#create(['%<', 'file', spc, '%<', 'jsonpath', spc, 'readonly', 'coc_status', 'lsp_progress'])
   endif
 
+
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
+
+"let g:UltiSnipsExpandTrigger="<Nop>"
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 let g:EasyMotion_keys='aoeuidhtnsn'
+
+let g:vim_markdown_no_default_key_mappings = 1
