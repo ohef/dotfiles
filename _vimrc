@@ -75,6 +75,7 @@ nnoremap <leader>rs :w<enter>:source $MYVIMRC<enter>
 
 nnoremap <leader>vv :Git<enter>
 nnoremap <leader>vb :Git blame<enter>
+nnoremap <leader>vl :Git log<enter>
 
 nnoremap <leader>w <C-W>
 
@@ -100,7 +101,7 @@ nmap <leader>rv  <Plug>(coc-codeaction-selected)
 
 nnoremap ' `
 nnoremap Y y$
-nnoremap ; ?
+nnoremap ; :w<enter>
 noremap H ^
 noremap L $
 nnoremap gh H

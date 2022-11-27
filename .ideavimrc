@@ -7,6 +7,7 @@ imap <A-t> (
 imap <A-c> {
 imap <A-n> )
 imap <A-r> }
+nmap <A-r> <Action>(Switcher)
 map <A-u> <C-u>
 map <A-e> <C-d>
 nnoremap <A-l> gt
@@ -18,6 +19,8 @@ nnoremap <A-k> :action MoveStatementUp<enter>
 vnoremap <A-k> :action MoveLineUp<enter>
 vnoremap <A-j> :action MoveLineDown<enter>
 
+#debugging
+nmap <leader>dc <Action>(Resume)
 
 nmap <leader>gr "*gr
 nmap <leader>hh <Action>(Switcher)
@@ -37,7 +40,7 @@ noremap <leader>rc :action ChangeSignature<enter>
 noremap <leader>re :e ~\\.ideavimrc<enter>
 noremap <leader>ri :action Inline<enter>
 noremap <leader>rn :action RenameElement<enter>
-noremap <leader>rs :source ~\\.ideavimrc<enter>
+noremap <leader>rs :source ~\.ideavimrc<enter>
 noremap <leader>rv :action IntroduceVariable<enter>
 noremap <leader>t :action AddToFavorites<enter>
 noremap <leader>y "*y
@@ -52,8 +55,8 @@ nnoremap S /
 nnoremap ; ?
 nnoremap gh H
 nnoremap gl L
-nnoremap H ^
-nnoremap L $
+nmap H ^
+nmap L $
 nnoremap ' `
 
 set ignorecase
