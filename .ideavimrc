@@ -7,9 +7,12 @@ imap <A-t> (
 imap <A-c> {
 imap <A-n> )
 imap <A-r> }
+imap <A-h> :
+
+nmap <A-v> V
 nmap <A-r> <Action>(Switcher)
-map <A-u> <C-u>
-map <A-e> <C-d>
+map <A-u> <C-u>zz
+map <A-e> <C-d>zz
 nnoremap <A-l> gt
 nnoremap <A-h> gT
 nnoremap <A-o> <C-o>
@@ -21,6 +24,7 @@ vnoremap <A-j> :action MoveLineDown<enter>
 
 #debugging
 nmap <leader>dc <Action>(Resume)
+nmap <leader><leader> <Action>(SearchEverywhere)
 
 nmap <leader>gr "*gr
 nmap <leader>hh <Action>(Switcher)
@@ -51,8 +55,8 @@ map gs %
 nmap s <Plug>(easymotion-prefix)
 nnoremap ' `
 nnoremap Y y$
-nnoremap S /
-nnoremap ; ?
+nmap S /
+nnoremap ; :w<enter>
 nnoremap gh H
 nnoremap gl L
 nmap H ^

@@ -57,6 +57,7 @@ function! RgWordUnderCursor()
 endfunction
 
 nnoremap <leader>a :Maps<enter>
+nnoremap <A-a> :
 
 nnoremap <leader>fb :Buffers<enter>
 nnoremap <leader>fc :GFiles?<enter>
@@ -122,8 +123,8 @@ map <A-o> <C-o>
 map <A-i> <C-i>
 imap <A-t> (
 imap <A-h> {
-nmap <A-u> <C-u>
-nmap <A-e> <C-d>
+nmap <A-u> <C-u>zz
+nmap <A-e> <C-d>zz
 
 noremap <F1> :NERDTreeToggle<CR>
 noremap <F2> :NERDTreeFind<CR>
