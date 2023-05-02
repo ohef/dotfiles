@@ -50,6 +50,8 @@ set ts=2 sw=2 expandtab
 set tw=80
 highlight LineNr ctermfg=blue ctermbg=Black
 
+set noswapfile
+
 function! RgWordUnderCursor()
   let wordUnderCursor = expand("<cword>")
   :Rg 
@@ -66,6 +68,7 @@ nnoremap <leader>ff :Files<enter>
 nnoremap <leader>fg :GFiles<enter>
 nnoremap <leader>fr :call RgWordUnderCursor()<enter>
 nnoremap <leader>fs :Snippets<enter>
+nnoremap <leader>fl :Lines<enter>
 
 nnoremap <leader>hn :NERDTreeFocus<enter>
 nnoremap <leader>ht :GFiles<enter>
@@ -77,6 +80,8 @@ nnoremap <leader>rs :w<enter>:source $MYVIMRC<enter>
 nnoremap <leader>vv :Git<enter>
 nnoremap <leader>vb :Git blame<enter>
 nnoremap <leader>vl :Git log<enter>
+
+nnoremap <leader>od :e ~/Desktop<enter>
 
 nnoremap <leader>w <C-W>
 
@@ -114,6 +119,8 @@ execute "set <A-o>=\eo"
 execute "set <A-e>=\ee"
 execute "set <A-t>=\et"
 execute "set <A-h>=\eh"
+execute "set <A-r>=\er"
+execute "set <A-n>=\en"
 
 map <a-w> [w
 map <a-b> [b
@@ -122,7 +129,11 @@ map <A-h> gT
 map <A-o> <C-o>
 map <A-i> <C-i>
 imap <A-t> (
-imap <A-h> {
+imap <A-n> )
+imap <A-c> {
+imap <A-r> }
+imap <A-h> :
+imap <A-s> -
 nmap <A-u> <C-u>zz
 nmap <A-e> <C-d>zz
 
@@ -150,7 +161,7 @@ colorscheme dracula
 highlight Pmenu ctermfg=white ctermbg=black guibg=#282a36
 
 if has('gui_running')
-  set guifont=Inconsolata:h14:cANSI
+  set guifont=Inconsolata:h14
   set guioptions-=T
   set guioptions-=m
 endif

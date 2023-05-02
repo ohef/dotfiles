@@ -1,61 +1,79 @@
 let mapleader="\<space>"
 
-#noremap <leader>re :e /Users/ohefnawi/.ideavimrc<enter>
-#noremap <leader>rs :source /Users/ohefnawi/.ideavimrc<enter>
-
 imap <A-t> (
 imap <A-c> {
 imap <A-n> )
 imap <A-r> }
 imap <A-h> :
 
+map f /
+map F ?
+nmap <A-;> :q<enter>
 nmap <A-v> V
 nmap <A-r> <Action>(Switcher)
 map <A-u> <C-u>zz
 map <A-e> <C-d>zz
-nnoremap <A-l> gt
-nnoremap <A-h> gT
+nmap <A-l> <Action>(NextTab)
+nmap <A-h> <Action>(PreviousTab)
 nnoremap <A-o> <C-o>
 nnoremap <A-i> <C-i>
 nnoremap <A-j> :action MoveStatementDown<enter>
 nnoremap <A-k> :action MoveStatementUp<enter>
 vnoremap <A-k> :action MoveLineUp<enter>
 vnoremap <A-j> :action MoveLineDown<enter>
+nmap <A-n> <Action>(GotoNextError)
+nmap <A-S-N> <Action>(GotoPreviousError)
+imap <A-p> <C-r>0
 
-#debugging
+xmap <leader>s <Action>(SurroundWith)
+
 nmap <leader>dc <Action>(Resume)
 nmap <leader><leader> <Action>(SearchEverywhere)
 
 nmap <leader>gr "*gr
-nmap <leader>hh <Action>(Switcher)
+nnoremap gc :action GotoTypeDeclaration<enter>
 nnoremap <leader>c :action CommentByLineComment<enter>
-nnoremap <leader>hh :action Switcher<enter><enter>
-nnoremap <leader>rp :.,$s/<c-r>"/<c-r>./gc<enter>
-nnoremap <leader>rr :action RefactoringMenu<enter>
 nnoremap <leader>w <C-W>
 noremap <leader>P "*P
-noremap <leader>b :action ToggleLineBreakpoint<enter>
+
+noremap <leader>bb :action ToggleLineBreakpoint<enter>
+noremap <leader>bp :action ToggleBreakpointEnabled<enter>
+noremap <leader>be :action EditBreakpoint<enter>
+noremap <leader>bc :action Resume<enter>
+noremap <leader>bm :action XDebugger.MuteBreakpoints<enter>
+
 noremap <leader>dd :action Debug<enter>
+
 noremap <leader>f :action ActivateFavoritesToolWindow<enter>
 noremap <leader>fr :action FindInPath<enter>
+
 noremap <leader>hn :action SelectInProjectView<enter>
+nmap <leader>hh <Action>(Switcher)
+nmap <leader>hd <Action>(FindUsages)
+
 noremap <leader>p "*p
+
 noremap <leader>rc :action ChangeSignature<enter>
 noremap <leader>re :e ~\\.ideavimrc<enter>
 noremap <leader>ri :action Inline<enter>
 noremap <leader>rn :action RenameElement<enter>
-noremap <leader>rs :source ~\.ideavimrc<enter>
+noremap <leader>rs :w<enter>:source ~\.ideavimrc<enter>
 noremap <leader>rv :action IntroduceVariable<enter>
-noremap <leader>t :action AddToFavorites<enter>
+vnoremap <leader>rr :action RefactoringMenu<enter>
+nnoremap <leader>rr :action RefactoringMenu<enter>
+nnoremap <leader>rp :.,$s/<c-r>"/<c-r>./gc<enter>
+
+nmap <leader>tp <Action>(PinActiveTabToggle)
+nnoremap <leader>tt :action AddToFavorites<enter>
+
 noremap <leader>y "*y
 vnoremap <leader>c :action CommentByLineComment<enter>
-vnoremap <leader>rr :action RefactoringMenu<enter>
 
 map gs %
+map ,h ma
 nmap s <Plug>(easymotion-prefix)
 nnoremap ' `
 nnoremap Y y$
-nmap S /
 nnoremap ; :w<enter>
 nnoremap gh H
 nnoremap gl L
