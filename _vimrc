@@ -108,6 +108,7 @@ nmap <leader>rv  <Plug>(coc-codeaction-selected)
 nnoremap ' `
 nnoremap Y y$
 nnoremap ; :w<enter>
+nnoremap ; :w<enter>
 noremap H ^
 noremap L $
 nnoremap gh H
@@ -121,6 +122,8 @@ execute "set <A-t>=\et"
 execute "set <A-h>=\eh"
 execute "set <A-r>=\er"
 execute "set <A-n>=\en"
+execute "set <A-u>=\eu"
+execute "set <A-;>=\e;"
 
 map <a-w> [w
 map <a-b> [b
@@ -128,6 +131,7 @@ map <A-l> gt
 map <A-h> gT
 map <A-o> <C-o>
 map <A-i> <C-i>
+map <A-;> :q!<enter>
 imap <A-t> (
 imap <A-n> )
 imap <A-c> {

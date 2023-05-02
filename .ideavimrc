@@ -1,5 +1,8 @@
 let mapleader="\<space>"
 
+noremap <leader>re :e ~\\.ideavimrc<enter>
+noremap <leader>rs :source ~\\.ideavimrc<enter>
+
 imap <A-t> (
 imap <A-c> {
 imap <A-n> )
@@ -54,7 +57,6 @@ nmap <leader>hd <Action>(FindUsages)
 noremap <leader>p "*p
 
 noremap <leader>rc :action ChangeSignature<enter>
-noremap <leader>re :e ~\\.ideavimrc<enter>
 noremap <leader>ri :action Inline<enter>
 noremap <leader>rn :action RenameElement<enter>
 noremap <leader>rs :w<enter>:source ~\.ideavimrc<enter>
@@ -66,8 +68,14 @@ nnoremap <leader>rp :.,$s/<c-r>"/<c-r>./gc<enter>
 nmap <leader>tp <Action>(PinActiveTabToggle)
 nnoremap <leader>tt :action AddToFavorites<enter>
 
+noremap <leader>rv :action IntroduceVariable<enter>
+map <leader>rw :action SurroundWith<enter>
+noremap <leader>t :action AddToFavorites<enter>
 noremap <leader>y "*y
 vnoremap <leader>c :action CommentByLineComment<enter>
+
+"Source Control Binds"
+nnoremap <leader>vb :action Annotate<enter>
 
 map gs %
 map ,h ma
@@ -94,6 +102,8 @@ set ReplaceWithRegister
 noremap <leader>df :action RiderLink.StartUnreal<enter>
 noremap <leader>dg :action RiderLink.StopUnreal<enter>
 nnoremap <leader>un :action Rider.NewFileFromTemplate<enter>
+
+set noideadelaymacro
 
 "C++ Centric 
 noremap <leader>ht :action SwitchHeaderSource<enter>
