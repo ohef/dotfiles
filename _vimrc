@@ -138,8 +138,8 @@ imap <A-c> {
 imap <A-r> }
 imap <A-h> :
 imap <A-s> -
-nmap <A-u> <C-u>zz
-nmap <A-e> <C-d>zz
+map <A-u> <C-u>zz
+map <A-e> <C-d>zz
 
 noremap <F1> :NERDTreeToggle<CR>
 noremap <F2> :NERDTreeFind<CR>
