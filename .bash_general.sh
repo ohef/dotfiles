@@ -1,8 +1,8 @@
-alias ranger=". ranger"
-alias bat='batcat'
+#alias ranger=". ranger"
 alias fastCheckout='__git_dwim_remote_heads | fzf | xargs git checkout'
 
-TERM=xterm-256color
+export BAT_THEME=Dracula
+export TERM=xterm-256color
 
 #https://gist.github.com/mkottman/1936195
 RESET="\[\033[0m\]"
@@ -30,8 +30,7 @@ function parse_git_branch {
 PROMPT_COMMAND=parse_git_branch
 PS_INFO="$BLUE\w"
 PS_GIT="$YELLOW\$PS_BRANCH"
-# using a lambda agressive tipping commence! *tip* *tip* *tip* *tip* *tip* *tip* 
-export PS1="\${PS_FILL}\[\033[0G\]${PS_INFO} ${PS_GIT}${PS_TIME}\n${RESET}Æ "
+export PS1="\${PS_FILL}\[\033[0G\]${PS_INFO} ${PS_GIT}${PS_TIME}\n${RESET}☥ "
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 ! [ -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 
