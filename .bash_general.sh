@@ -1,5 +1,11 @@
 #alias ranger=". ranger"
-alias fastCheckout='__git_dwim_remote_heads | fzf | xargs git checkout'
+#alias fastCheckout='__git_dwim_remote_heads | fzf | xargs git checkout'
+
+function fastCheckout() {
+  git stash
+  __git_dwim_remote_heads | fzf | xargs git checkout
+  git stash pop 
+}
 
 export BAT_THEME=Dracula
 export TERM=xterm-256color
@@ -12,6 +18,8 @@ BLUE="\[\033[01;34m\]"
 YELLOW="\[\033[0;33m\]"
 
 # tput cnorm
+# for i in {0..255}; do     printf "\x1b[38;5;${i}mcolour${i}\x1b[0m\n"; done
+#
  
 #PS_LINE=`printf -- '- %.0s' {1..200}`
 function parse_git_branch {

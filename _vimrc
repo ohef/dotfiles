@@ -50,6 +50,7 @@ set cursorline
 set ts=2 sw=2 expandtab
 set tw=80
 highlight LineNr ctermfg=blue ctermbg=Black
+set termguicolors
 
 set noswapfile
 
@@ -117,14 +118,18 @@ nnoremap gl L
 
 nnoremap gp dET(P
 
-execute "set <A-o>=\eo"
-execute "set <A-e>=\ee"
-execute "set <A-t>=\et"
-execute "set <A-h>=\eh"
-execute "set <A-r>=\er"
-execute "set <A-n>=\en"
-execute "set <A-u>=\eu"
-execute "set <A-;>=\e;"
+"vim specific stuff
+if !has('nvim')
+  execute "set <A-o>=\eo"
+  execute "set <A-e>=\ee"
+  execute "set <A-t>=\et"
+  execute "set <A-h>=\eh"
+  execute "set <A-r>=\er"
+  execute "set <A-n>=\en"
+  execute "set <A-u>=\eu"
+  execute "set <A-;>=\e;"
+  set noesckeys
+endif
 
 map <a-w> [w
 map <a-b> [b
@@ -160,6 +165,8 @@ ab \, =>
 
 "If you have a vimrc in the current directory then it'll use it?
 set exrc
+
+"let g:dracula_colorterm = 0
 
 colorscheme dracula
 
@@ -248,15 +255,14 @@ function! AirlineInit()
   else
     let g:airline_section_c = airline#section#create(['%<', 'file', spc, '%<', 'jsonpath', spc, 'readonly', 'coc_status', 'lsp_progress'])
   endif
-
-
 endfunction
+
 autocmd User AirlineAfterInit call AirlineInit()
 
-"let g:UltiSnipsExpandTrigger="<Nop>"
+let g:UltiSnipsExpandTrigger="<Nop>"
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-let g:EasyMotion_keys='aoeuidhtnsn'
 
+let g:EasyMotion_keys='aoeuidhtnsn'
 let g:vim_markdown_no_default_key_mappings = 1
