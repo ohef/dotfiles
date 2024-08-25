@@ -29,13 +29,16 @@ nmap <A-S-N> <Action>(GotoPreviousError)
 imap <A-p> <C-r>0
 
 xmap <leader>s <Action>(SurroundWith)
+xmap <leader>c <Action>(CommentByBlockComment)
+"nnoremap <leader>cc <Action>(CommentByLineComment)
+nmap <leader>cc :action CommentByLineComment<enter>
+nmap <leader>cs <Action>(CommentByBlockComment)
 
 nmap <leader>dc <Action>(Resume)
 nmap <leader><leader> <Action>(SearchEverywhere)
 
 nmap <leader>gr "*gr
 nnoremap gc :action GotoTypeDeclaration<enter>
-nnoremap <leader>c :action CommentByLineComment<enter>
 nnoremap <leader>w <C-W>
 noremap <leader>P "*P
 
@@ -44,10 +47,12 @@ noremap <leader>bp :action ToggleBreakpointEnabled<enter>
 noremap <leader>be :action EditBreakpoint<enter>
 noremap <leader>bc :action Resume<enter>
 noremap <leader>bm :action XDebugger.MuteBreakpoints<enter>
+noremap <leader>bh :action CIDR.Debugger.JumpToLine<enter>
 
 noremap <leader>dd :action Debug<enter>
 
 noremap <leader>f :action ActivateFavoritesToolWindow<enter>
+noremap <leader>ff :action ToggleDistractionFreeMode<enter>
 noremap <leader>fr :action FindInPath<enter>
 
 noremap <leader>hn :action SelectInProjectView<enter>
@@ -72,7 +77,7 @@ noremap <leader>rv :action IntroduceVariable<enter>
 map <leader>rw :action SurroundWith<enter>
 noremap <leader>t :action AddToFavorites<enter>
 noremap <leader>y "*y
-vnoremap <leader>c :action CommentByLineComment<enter>
+"vnoremap <leader>c :action CommentByLineComment<enter>
 
 "Source Control Binds"
 nnoremap <leader>vb :action Annotate<enter>
@@ -80,6 +85,7 @@ nnoremap <leader>vb :action Annotate<enter>
 map gs %
 map ,h ma
 nmap s <Plug>(easymotion-prefix)
+xmap s <Plug>(easymotion-prefix)
 nnoremap ' `
 nnoremap Y y$
 nnoremap ; :w<enter>

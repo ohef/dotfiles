@@ -37,6 +37,7 @@ Plug 'drn/zoomwin-vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ohef/vim-jsonpath'
 Plug 'preservim/vim-markdown'
+Plug 'bkad/CamelCaseMotion'
 
 call plug#end()            " required
 filetype plugin indent on     " required!
