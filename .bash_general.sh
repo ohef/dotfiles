@@ -1,5 +1,6 @@
 #alias ranger=". ranger"
 #alias fastCheckout='__git_dwim_remote_heads | fzf | xargs git checkout'
+alias vim='nvim'
 
 function fastCheckout() {
   git stash
