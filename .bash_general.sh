@@ -7,6 +7,10 @@ function fastCheckout() {
   git stash pop 
 }
 
+function fastSwitch() {
+  __git_heads | fzf | xargs git checkout
+}
+
 export BAT_THEME=Dracula
 export TERM=xterm-256color
 
@@ -38,7 +42,8 @@ function parse_git_branch {
 PROMPT_COMMAND=parse_git_branch
 PS_INFO="$BLUE\w"
 PS_GIT="$YELLOW\$PS_BRANCH"
-export PS1="\${PS_FILL}\[\033[0G\]${PS_INFO} ${PS_GIT}${PS_TIME}\n${RESET}☥ "
+export PS1="${PS_FILL}\[\033[0G\]${PS_INFO} ${PS_GIT}\[\e[32m\][\$(date +%H:%M:%S)]\[\e[0m\]\n${RESET}☥ "
+export EDITOR="nvim"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 ! [ -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 

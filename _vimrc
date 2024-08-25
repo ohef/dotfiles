@@ -11,10 +11,10 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'altercation/vim-colors-solarized'
-Plug 'dhruvasagar/vim-table-mode'
+" Plug 'dhruvasagar/vim-table-mode'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
-Plug 'hrj/vim-DrawIt'
+" Plug 'hrj/vim-DrawIt'
 Plug 'Shougo/vimproc.vim', {
       \ 'build' : {
       \     'windows' : 'tools\\update-dll-mingw'
@@ -22,8 +22,8 @@ Plug 'Shougo/vimproc.vim', {
       \ }
 Plug 'dracula/vim', { 'name': 'dracula' }
 Plug 'SirVer/ultisnips'
-Plug 'tpope/vim-fugitive'
 Plug 'honza/vim-snippets'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish' 
 Plug 'metakirby5/codi.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -32,12 +32,15 @@ Plug 'LunarWatcher/auto-pairs', {'branch': 'develop'}
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'chrisbra/Colorizer'
 Plug 'drn/zoomwin-vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ohef/vim-jsonpath'
 Plug 'preservim/vim-markdown'
 Plug 'bkad/CamelCaseMotion'
+Plug 'github/copilot.vim'
+Plug 'jpalardy/vim-slime'
 
 call plug#end()            " required
 filetype plugin indent on     " required!
@@ -79,9 +82,10 @@ nnoremap <leader>re :e! $MYVIMRC<enter>
 nnoremap <leader>rp :.,$s/<c-r>"/<c-r>./gc<enter>
 nnoremap <leader>rs :w<enter>:source $MYVIMRC<enter>
 
-nnoremap <leader>vv :Git<enter>
-nnoremap <leader>vb :Git blame<enter>
-nnoremap <leader>vl :Git log<enter>
+nnoremap <leader>vv :G<enter>
+nnoremap <leader>vb :G blame<enter>
+nnoremap <leader>vl :G log<enter>
+nnoremap <leader>vp :G push<enter>
 
 nnoremap <leader>od :e ~/Desktop<enter>
 
@@ -94,6 +98,9 @@ nnoremap <a-k> <c-u>
 
 noremap <leader>y "*y
 noremap <leader>p "*p
+
+" bro remap this it's so cool 
+" exec '!gh browse -n -c ' . expand('%') . ':' . line('.') . ' | pbcopy'
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -128,6 +135,8 @@ if !has('nvim')
   execute "set <A-n>=\en"
   execute "set <A-u>=\eu"
   execute "set <A-;>=\e;"
+  execute "set <A-p>=\e:cnext"
+  execute "set <A-.>=\e:cprev"
   set noesckeys
 endif
 
@@ -146,6 +155,9 @@ imap <A-h> :
 imap <A-s> -
 map <A-u> <C-u>zz
 map <A-e> <C-d>zz
+map <A-p> :cnext<enter>
+map <A-.> :cprev<enter>
+
 
 noremap <F1> :NERDTreeToggle<CR>
 noremap <F2> :NERDTreeFind<CR>
@@ -244,20 +256,23 @@ let g:airline_theme='dracula'
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#coc#show_coc_status = 1
 
-function! AirlineInit()
-  call airline#parts#define_function('jsonpath', 'jsonpath#out')
-  call airline#parts#define_condition('jsonpath', '&filetype == "json"')
-  call airline#parts#define_accent('jsonpath', 'bold')
+if has('nvim')
+else
+  function! AirlineInit()
+    call airline#parts#define_function('jsonpath', 'jsonpath#out')
+    call airline#parts#define_condition('jsonpath', '&filetype == "json"')
+    call airline#parts#define_accent('jsonpath', 'bold')
 
-  let spc = g:airline_symbols.space
-  if exists("+autochdir") && &autochdir == 1
-    let g:airline_section_c = airline#section#create(['%<', 'path', spc, '%<', 'jsonpath', spc, 'readonly', 'coc_status', 'lsp_progress'])
-  else
-    let g:airline_section_c = airline#section#create(['%<', 'file', spc, '%<', 'jsonpath', spc, 'readonly', 'coc_status', 'lsp_progress'])
-  endif
-endfunction
+    let spc = g:airline_symbols.space
+    if exists("+autochdir") && &autochdir == 1
+      let g:airline_section_c = airline#section#create(['%<', 'path', spc, '%<', 'jsonpath', spc, 'readonly', 'coc_status', 'lsp_progress'])
+    else
+      let g:airline_section_c = airline#section#create(['%<', 'file', spc, '%<', 'jsonpath', spc, 'readonly', 'coc_status', 'lsp_progress'])
+    endif
+  endfunction
 
-autocmd User AirlineAfterInit call AirlineInit()
+  autocmd User AirlineAfterInit call AirlineInit()
+endif
 
 let g:UltiSnipsExpandTrigger="<Nop>"
 
@@ -266,3 +281,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 let g:EasyMotion_keys='aoeuidhtnsn'
 let g:vim_markdown_no_default_key_mappings = 1
+
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": split($TMUX, ",")[0], "target_pane": ":.1"}
