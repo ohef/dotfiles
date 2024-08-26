@@ -1,4 +1,7 @@
 *
+!.config/
+!.config/nvim/
+!.config/nvim/**/*
 !.gitignore
 !_vimrc
 !.ideavimrc

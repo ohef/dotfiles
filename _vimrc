@@ -3,46 +3,53 @@ let mapleader="\<space>"
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-call plug#begin()
+" Use <c-space> to trigger completion.
+if has('nvim')
+  lua require("newInit")
+else
+  call plug#begin()
 
-" let Vundle manage Vundle
-" required! 
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-Plug 'bling/vim-airline'
-Plug 'altercation/vim-colors-solarized'
-" Plug 'dhruvasagar/vim-table-mode'
-Plug 'easymotion/vim-easymotion'
-Plug 'tpope/vim-surround'
-" Plug 'hrj/vim-DrawIt'
-Plug 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw'
-      \    },
-      \ }
-Plug 'dracula/vim', { 'name': 'dracula' }
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-abolish' 
-Plug 'metakirby5/codi.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'vim-scripts/ReplaceWithRegister'
-Plug 'LunarWatcher/auto-pairs', {'branch': 'develop'}
-Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-easy-align'
-Plug 'chrisbra/Colorizer'
-Plug 'drn/zoomwin-vim'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'ohef/vim-jsonpath'
-Plug 'preservim/vim-markdown'
-Plug 'bkad/CamelCaseMotion'
-Plug 'github/copilot.vim'
-Plug 'jpalardy/vim-slime'
+  " let Vundle manage Vundle
+  " required! 
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'scrooloose/nerdtree'
+  Plug 'bling/vim-airline'
+  Plug 'altercation/vim-colors-solarized'
+  " Plug 'dhruvasagar/vim-table-mode'
+  Plug 'easymotion/vim-easymotion'
+  Plug 'tpope/vim-surround'
+  " Plug 'hrj/vim-DrawIt'
+  Plug 'Shougo/vimproc.vim', {
+        \ 'build' : {
+        \     'windows' : 'tools\\update-dll-mingw'
+        \    },
+        \ }
+  Plug 'dracula/vim', { 'name': 'dracula' }
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-abolish' 
+  Plug 'metakirby5/codi.vim'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'vim-scripts/ReplaceWithRegister'
+  Plug 'LunarWatcher/auto-pairs', {'branch': 'develop'}
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/vim-easy-align'
+  Plug 'chrisbra/Colorizer'
+  Plug 'drn/zoomwin-vim'
+  Plug 'AndrewRadev/splitjoin.vim'
+  Plug 'ohef/vim-jsonpath'
+  Plug 'preservim/vim-markdown'
+  Plug 'bkad/CamelCaseMotion'
+  Plug 'github/copilot.vim'
+  Plug 'jpalardy/vim-slime'
 
-call plug#end()            " required
+  call plug#end()
+endif
+
+
 filetype plugin indent on     " required!
 
 set encoding=utf-8
@@ -222,7 +229,7 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice.
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! CheckBackspace() abort
   let col = col('.') - 1
@@ -284,3 +291,5 @@ let g:vim_markdown_no_default_key_mappings = 1
 
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": split($TMUX, ",")[0], "target_pane": ":.1"}
+
+"let g:chat_gpt_model='gpt-3.5-turbo'
