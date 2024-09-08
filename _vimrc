@@ -49,7 +49,6 @@ else
   call plug#end()
 endif
 
-
 filetype plugin indent on     " required!
 
 set encoding=utf-8
@@ -289,7 +288,9 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 let g:EasyMotion_keys='aoeuidhtnsn'
 let g:vim_markdown_no_default_key_mappings = 1
 
-let g:slime_target = "tmux"
-let g:slime_default_config = {"socket_name": split($TMUX, ",")[0], "target_pane": ":.1"}
+if $TMUX != ""
+  let g:slime_target = "tmux"
+  let g:slime_default_config = {"socket_name": split($TMUX, ",")[0], "target_pane": ":.1"}
+endif
 
 "let g:chat_gpt_model='gpt-3.5-turbo'
