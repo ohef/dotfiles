@@ -54,7 +54,7 @@ require("lazy").setup({
     { "vim-scripts/ReplaceWithRegister" },
     { "LunarWatcher/auto-pairs", branch = "develop" },
     { "vim-airline/vim-airline-themes" },
-    {"junegunn/fzf", dir = "~/.fzf", build = "./install --all"},
+    { "junegunn/fzf", build = "./install --all"},
     { "junegunn/fzf.vim" },
     { "junegunn/vim-easy-align" },
     { "chrisbra/Colorizer" },
