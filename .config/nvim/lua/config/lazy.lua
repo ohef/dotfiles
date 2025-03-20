@@ -30,6 +30,24 @@ require("lazy").setup({
     { "scrooloose/nerdtree" },
     { "bling/vim-airline" },
     { "altercation/vim-colors-solarized" },
+    {
+      "olimorris/codecompanion.nvim",
+      config = true,
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+      },
+      opts = {
+        strategies = {
+          chat = {
+            adapter = "ollama"
+          },
+          inline = {
+            adapter = "ollama"
+          }
+        }
+      }
+    },
     -- Uncomment if needed
     -- { "dhruvasagar/vim-table-mode" },
     { "easymotion/vim-easymotion" },
