@@ -29,31 +29,9 @@ require("lazy").setup({
     { "scrooloose/nerdcommenter" },
     { "scrooloose/nerdtree" },
     { "bling/vim-airline" },
-    { "altercation/vim-colors-solarized" },
-    {
-      "olimorris/codecompanion.nvim",
-      config = true,
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-treesitter/nvim-treesitter",
-      },
-      opts = {
-        strategies = {
-          chat = {
-            adapter = "ollama"
-          },
-          inline = {
-            adapter = "ollama"
-          }
-        }
-      }
-    },
-    -- Uncomment if needed
-    -- { "dhruvasagar/vim-table-mode" },
     { "easymotion/vim-easymotion" },
     { "tpope/vim-surround" },
-    -- Uncomment if needed
-    -- { "hrj/vim-DrawIt" },
+    { "neovim/nvim-lspconfig" },
     {
       "Shougo/vimproc.vim",
       build = function()
@@ -67,20 +45,13 @@ require("lazy").setup({
     { "honza/vim-snippets" },
     { "tpope/vim-fugitive" },
     { "tpope/vim-abolish" },
-    { "metakirby5/codi.vim" },
-    { "neoclide/coc.nvim", branch = "release" },
     { "vim-scripts/ReplaceWithRegister" },
-    { "LunarWatcher/auto-pairs", branch = "develop" },
     { "vim-airline/vim-airline-themes" },
     { "junegunn/fzf", build = "./install --all"},
     { "junegunn/fzf.vim" },
     { "junegunn/vim-easy-align" },
-    { "chrisbra/Colorizer" },
     { "drn/zoomwin-vim" },
-    { "AndrewRadev/splitjoin.vim" },
     { "ohef/vim-jsonpath" },
-    { "preservim/vim-markdown" },
-    { "bkad/CamelCaseMotion" },
     { "github/copilot.vim" },
     { "jpalardy/vim-slime" },
   },
@@ -90,3 +61,69 @@ require("lazy").setup({
   -- Automatically check for plugin updates
   checker = { enabled = true },
 })
+
+vim.lsp.config('lua_ls', {
+  on_init = function(client)
+    if client.workspace_folders then
+      local path = client.workspace_folders[1].name
+      if path ~= vim.fn.stdpath('config') and (vim.uv.fs_stat(path..'/.luarc.json') or vim.uv.fs_stat(path..'/.luarc.jsonc')) then
+        return
+      end
+    end
+
+    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+      runtime = {
+        -- Tell the language server which version of Lua you're using
+        -- (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT'
+      },
+      -- Make the server aware of Neovim runtime files
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME
+          -- Depending on the usage, you might want to add additional paths here.
+          -- "${3rd}/luv/library"
+          -- "${3rd}/busted/library",
+        }
+        -- or pull in all of 'runtimepath'. NOTE: this is a lot slower and will cause issues when working on your own configuration (see https://github.com/neovim/nvim-lspconfig/issues/3189)
+        -- library = vim.api.nvim_get_runtime_file("", true)
+      }
+    })
+  end,
+  settings = {
+    Lua = {}
+  }
+})
+vim.lsp.enable('lua_ls')
+
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { "c", "lua", "rust", yaml },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  auto_install = false,
+
+  -- List of parsers to ignore installing (for "all")
+  ignore_install = { "javascript" },
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- list of language that will be disabled
+    --disable = { "c", "rust" },
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+  incremental_selection = {
+    enable = true,
+  }
+}
