@@ -9,8 +9,6 @@ imap <A-n> )
 imap <A-r> }
 imap <A-h> :
 
-map f /
-map F ?
 nmap <A-;> :q<enter>
 nmap <A-v> V
 nmap <A-r> <Action>(Switcher)
@@ -33,6 +31,7 @@ xmap <leader>c <Action>(CommentByBlockComment)
 "nnoremap <leader>cc <Action>(CommentByLineComment)
 nmap <leader>cc :action CommentByLineComment<enter>
 nmap <leader>cs <Action>(CommentByBlockComment)
+nmap <leader>cy :action CopyPathWithLineNumber<enter>
 
 nmap <leader>dc <Action>(Resume)
 nmap <leader><leader> <Action>(SearchEverywhere)
@@ -115,3 +114,6 @@ set noideadelaymacro
 noremap <leader>ht :action SwitchHeaderSource<enter>
 imap \. ->
 imap \, =>
+
+set visualbell
+set noerrorbells

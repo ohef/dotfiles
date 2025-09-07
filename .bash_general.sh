@@ -1,5 +1,13 @@
-#alias ranger=". ranger"
-#alias fastCheckout='__git_dwim_remote_heads | fzf | xargs git checkout'
+#!/bin/bash
+
+DIR=~/scripts
+[ -d "$DIR" ] || { echo "Directory '$DIR' not found."; exit 1; }
+
+for f in "$DIR"/*.sh; do
+  [ -e "$f" ] || break
+  source "$f"
+done
+
 alias vim='nvim'
 
 function fastCheckout() {
@@ -13,7 +21,7 @@ function fastSwitch() {
 }
 
 export BAT_THEME=Dracula
-export TERM=xterm-256color
+#export TERM=xterm-256color
 
 #https://gist.github.com/mkottman/1936195
 RESET="\[\033[0m\]"
@@ -49,4 +57,10 @@ export EDITOR="nvim"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 ! [ -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 
 [ -n "$TMUX" ] && tmux source-file "$HOME/.tmux.conf"
-#tput cnorm
+
+alias renameWindow="tmux rename-window \`basename \$(pwd)\`"
+alias quickDeleteTags="git tag -l | fzf --multi | xargs -I{} sh -c 'git push --delete origin {} && git tag -d {}'"
+alias quickDeleteBranches="git branch -a | grep remotes | fzf --multi | xargs basename | xargs git push --delete origin"
+alias editBashProfile="vim ~/.bash_profile"
+alias reloadBashProfile="source ~/.bash_profile"
+alias editScripts="vim ~/scripts"

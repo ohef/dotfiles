@@ -1,67 +1,26 @@
 let mapleader="\<space>"
 
-set nocompatible               " be iMproved
-filetype off                   " required!
+set clipboard=unnamedplus
 
-" Use <c-space> to trigger completion.
-if has('nvim')
-  lua require("newInit")
-else
-  call plug#begin()
+lua require("newInit")
 
-  " let Vundle manage Vundle
-  " required! 
-  Plug 'scrooloose/nerdcommenter'
-  Plug 'scrooloose/nerdtree'
-  Plug 'bling/vim-airline'
-  Plug 'altercation/vim-colors-solarized'
-  " Plug 'dhruvasagar/vim-table-mode'
-  Plug 'easymotion/vim-easymotion'
-  Plug 'tpope/vim-surround'
-  " Plug 'hrj/vim-DrawIt'
-  Plug 'Shougo/vimproc.vim', {
-        \ 'build' : {
-        \     'windows' : 'tools\\update-dll-mingw'
-        \    },
-        \ }
-  Plug 'dracula/vim', { 'name': 'dracula' }
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-abolish' 
-  Plug 'metakirby5/codi.vim'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'vim-scripts/ReplaceWithRegister'
-  Plug 'LunarWatcher/auto-pairs', {'branch': 'develop'}
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'junegunn/vim-easy-align'
-  Plug 'chrisbra/Colorizer'
-  Plug 'drn/zoomwin-vim'
-  Plug 'AndrewRadev/splitjoin.vim'
-  Plug 'ohef/vim-jsonpath'
-  Plug 'preservim/vim-markdown'
-  Plug 'bkad/CamelCaseMotion'
-  Plug 'github/copilot.vim'
-  Plug 'jpalardy/vim-slime'
-
-  call plug#end()
-endif
-
-filetype plugin indent on     " required!
-
-set encoding=utf-8
 syntax on
+
+set wrap                " Enable virtual line wrapping
+set linebreak           " Wrap at word boundaries
+set showbreak=↪         " Use a separator for wrapped lines
+set breakindent         " Indent wrapped lines
+set ts=2 sw=2 expandtab
+set tw=80
+
 set incsearch
 set number
 set cursorline
-set ts=2 sw=2 expandtab
-set tw=80
 highlight LineNr ctermfg=blue ctermbg=Black
 set termguicolors
-
 set noswapfile
+
+autocmd FileType javascript,typescript,css,html,json,yaml setlocal equalprg=prettier\ --stdin-filepath\ %:p
 
 function! RgWordUnderCursor()
   let wordUnderCursor = expand("<cword>")
@@ -70,7 +29,7 @@ function! RgWordUnderCursor()
 endfunction
 
 nnoremap <leader>a :Maps<enter>
-nnoremap <A-a> :
+nnoremap <A-t> :q!<enter>
 
 nnoremap <leader>fb :Buffers<enter>
 nnoremap <leader>fc :GFiles?<enter>
@@ -81,16 +40,18 @@ nnoremap <leader>fr :call RgWordUnderCursor()<enter>
 nnoremap <leader>fs :Snippets<enter>
 nnoremap <leader>fl :Lines<enter>
 
-nnoremap <leader>hn :NERDTreeFocus<enter>
+nnoremap <leader>hn :NERDTreeFind<enter>
 nnoremap <leader>ht :GFiles<enter>
 
 nnoremap <leader>re :e! $MYVIMRC<enter>
+nnoremap <leader>ru :e! ~/.bashrc<enter>
 nnoremap <leader>rp :.,$s/<c-r>"/<c-r>./gc<enter>
 nnoremap <leader>rs :w<enter>:source $MYVIMRC<enter>
 
 nnoremap <leader>vv :G<enter>
 nnoremap <leader>vb :G blame<enter>
-nnoremap <leader>vl :G log<enter>
+nnoremap <leader>vl :G log --decorate<enter>
+nnoremap <leader>vf :G log --decorate --name-only<enter>
 nnoremap <leader>vp :G push<enter>
 
 nnoremap <leader>od :e ~/Desktop<enter>
@@ -102,11 +63,16 @@ vnoremap <leader>a :<C-U>Maps<enter>
 nnoremap <a-j> <c-d>
 nnoremap <a-k> <c-u>
 
+nmap <leader>gr "*gr
 noremap <leader>y "*y
 noremap <leader>p "*p
 
-" bro remap this it's so cool 
-" exec '!gh browse -n -c ' . expand('%') . ':' . line('.') . ' | pbcopy'
+
+" Move selected lines down with Meta-j in visual mode
+vnoremap <M-j> :m '>+1<CR>gv=gv
+" Move selected lines up with Meta-k in visual mode
+vnoremap <M-k> :m '<-2<CR>gv=gv
+
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -259,8 +225,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 "END OF COC RIPPING ------------------------------------------------------------ 
 
 let g:airline_theme='dracula'
-let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#coc#show_coc_status = 1
 
 if has('nvim')
 else
@@ -276,7 +240,6 @@ else
       let g:airline_section_c = airline#section#create(['%<', 'file', spc, '%<', 'jsonpath', spc, 'readonly', 'coc_status', 'lsp_progress'])
     endif
   endfunction
-
   autocmd User AirlineAfterInit call AirlineInit()
 endif
 
@@ -288,9 +251,13 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 let g:EasyMotion_keys='aoeuidhtnsn'
 let g:vim_markdown_no_default_key_mappings = 1
 
-if $TMUX != ""
-  let g:slime_target = "tmux"
-  let g:slime_default_config = {"socket_name": split($TMUX, ",")[0], "target_pane": ":.1"}
-endif
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": split($TMUX, ",")[0], "target_pane": ":.1"}
+
+"Begin random stuff that I think is cool that I want to do something with 
 
 "let g:chat_gpt_model='gpt-3.5-turbo'
+" git log --name-status --diff-filter=D -- <path_to_folder>
+"
+" bro remap this it's so cool 
+" exec '!gh browse -n -c ' . expand('%') . ':' . line('.') . ' | pbcopy'
