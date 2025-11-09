@@ -1,7 +1,7 @@
 #!/bin/bash
 
 for file in .config/nvim .bash_general.sh .bash_profile scripts .tmux.conf .ideavimrc; do
-  rsync -a "$file" ~/
+  rsync -a --relative "$file" ~/
 done
 
 install_pkg() {
