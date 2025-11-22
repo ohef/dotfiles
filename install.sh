@@ -19,4 +19,4 @@ install_pkg() {
   fi
 }
 
-install_pkg fzf bat tmux neovim jq gh build-essential npm nodejs ripgrep bash-language-server
+install_pkg fzf bat tmux neovim jq gh npm nodejs ripgrep bash-language-server
