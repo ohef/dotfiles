@@ -8,7 +8,8 @@ install_pkg() {
   if command -v brew &>/dev/null; then
     brew install "$@"
   elif command -v apt &>/dev/null; then
-    sudo apt update && sudo apt install -y "$@"
+    #sudo apt update && sudo apt install -y "$@"
+    brew install "$@"
   elif command -v pacman &>/dev/null; then
     sudo pacman -Sy --noconfirm "$@"
   elif command -v dnf &>/dev/null; then
@@ -18,4 +19,4 @@ install_pkg() {
   fi
 }
 
-install_pkg fzf bat tmux neovim jq 
+install_pkg fzf bat tmux neovim jq gh build-essential npm nodejs ripgrep bash-language-server
