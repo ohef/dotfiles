@@ -20,13 +20,6 @@ return {
           --allow_insecure = true,
           --proxy = "http://127.0.0.1:4141",
         },
-        copilot = require("codecompanion.adapters").extend("copilot", {
-          schema = {
-            model = {
-              default = "claude-3.7-sonnet",
-            }
-          }
-        }),
         ollama = require("codecompanion.adapters").extend("ollama", {
           schema = {
             num_ctx = {
@@ -34,9 +27,8 @@ return {
             },
           },
           env = {
-            url = "https://www.ohefnawi.net/muhLLM",
-            api_key = os.getenv("OMAR_LLM_API_KEY"),
-            model = "deepseek-r1:32b",
+            url = "https://webai.ohefnawi.net",
+            api_key = "C09AgFzI1BEBtc7AiNy0No71sV9DB6fwyxAo+hRdZac="
           },
           headers = {
             ["Authorization"] = "Bearer ${api_key}",

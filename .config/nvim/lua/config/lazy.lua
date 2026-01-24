@@ -6,7 +6,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -44,90 +44,107 @@ require("lazy").setup({
         end
       end,
     },
-    {"nvim-treesitter/nvim-treesitter",
-    config = function()
-      require("nvim-treesitter.configs").setup {
-        highlight = {
-          enable = true,
-          disable = {"lua"}
-        },
-        ensure_installed = {
-          "vimdoc",
-          "luadoc",
-          "vim",
-          "lua",
-          "markdown",
-          "typescript", "javascript",'json','jsonc','yaml','html','css','scss','graphql','tsx'
-        }
-      }
-    end,
-  },
-  {
-    "nvim-neotest/neotest",
-    dependencies = {
-      "nvim-neotest/nvim-nio",
-      "nvim-lua/plenary.nvim",
-      "antoinemadec/FixCursorHold.nvim",
+    {
       "nvim-treesitter/nvim-treesitter",
-      'nvim-neotest/neotest-jest'
+      config = function()
+        require("nvim-treesitter.configs").setup {
+          highlight = {
+            enable = true,
+            disable = { "lua" }
+          },
+          ensure_installed = {
+            "vimdoc",
+            "luadoc",
+            "vim",
+            "lua",
+            "markdown",
+            "typescript", "javascript", 'json', 'jsonc', 'yaml', 'html', 'css', 'scss', 'graphql', 'tsx'
+          }
+        }
+      end,
     },
-    config = function()
-      require('neotest').setup({
-        adapters = {
-          require('neotest-jest')({
-            jestCommand = "npm run testOld --",
-            jestConfigFile = "legacy.jest.config.ts",
-            env = { CI = true },
-            cwd = function(path)
-              return vim.fn.getcwd()
-            end,
-          }),
-        },
-        output = {
-          use_float = false,  -- Set this to false to disable floating windows
-        },
-      })
-    end
-  },
-  { "dracula/vim", name = "dracula" },
-  { "SirVer/ultisnips" },
-  { "honza/vim-snippets" },
-  { "tpope/vim-tbone" },
-  { "tpope/vim-fugitive" },
-  { "tpope/vim-abolish" },
-  { "tpope/vim-rhubarb" },
-  { "metakirby5/codi.vim" },
-  { "neoclide/coc.nvim", branch = "release" },
-  { "vim-scripts/ReplaceWithRegister" },
-  { "LunarWatcher/auto-pairs", branch = "develop" },
-  --{ "vim-airline/vim-airline-themes" },
-  { "junegunn/fzf", build = "./install --all"},
-  { "junegunn/fzf.vim" },
-  { "junegunn/vim-easy-align" },
-  { "chrisbra/Colorizer" },
-  { "drn/zoomwin-vim" },
-  { "AndrewRadev/splitjoin.vim" },
-  { "ohef/vim-jsonpath" },
-  { "preservim/vim-markdown" },
-  {
-    'pwntester/octo.nvim',
-    dependencies  = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'nvim-tree/nvim-web-devicons',
+    {
+      "nvim-neotest/neotest",
+      dependencies = {
+        "nvim-neotest/nvim-nio",
+        "nvim-lua/plenary.nvim",
+        "antoinemadec/FixCursorHold.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        'nvim-neotest/neotest-jest'
+      },
+      config = function()
+        require('neotest').setup({
+          adapters = {
+            require('neotest-jest')({
+              jestCommand = "npm run testOld --",
+              jestConfigFile = "legacy.jest.config.ts",
+              env = { CI = true },
+              cwd = function(path)
+                return vim.fn.getcwd()
+              end,
+            }),
+          },
+          output = {
+            use_float = false, -- Set this to false to disable floating windows
+          },
+        })
+      end
     },
-    config = function ()
-      require("octo").setup()
-    end
+    { "dracula/vim",                    name = "dracula" },
+    { "tpope/vim-tbone" },
+    { "tpope/vim-fugitive" },
+    { "tpope/vim-abolish" },
+    { "tpope/vim-rhubarb" },
+    { "vim-scripts/ReplaceWithRegister" },
+    --{ "LunarWatcher/auto-pairs",        branch = "develop" },
+    { "junegunn/fzf",                   build = "./install --all" },
+    { "junegunn/fzf.vim" },
+    { "junegunn/vim-easy-align" },
+    { "chrisbra/Colorizer" },
+    {
+      'pwntester/octo.nvim',
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope.nvim',
+        'nvim-tree/nvim-web-devicons',
+      },
+      config       = function()
+        require("octo").setup()
+      end
+    },
+    { "bkad/CamelCaseMotion" },
+    { "github/copilot.vim" },
+    { "jpalardy/vim-slime" },
+    {
+      "neovim/nvim-lspconfig",
+      config = function()
+        vim.lsp.config('ts_ls', {
+          settings = {
+            typescript = {
+              inlayHints = {
+                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
+            },
+          }
+        })
+
+        vim.lsp.enable('bashls')
+        vim.lsp.enable('ts_ls')
+        vim.lsp.enable('lua_ls')
+        vim.lsp.enable('pyright')
+      end
+    }
   },
-  { "bkad/CamelCaseMotion" },
-  { "github/copilot.vim" },
-  { "jpalardy/vim-slime" },
-  { "neovim/nvim-lspconfig" },
-},
--- Configure any other settings here. See the documentation for more details.
--- Colorscheme that will be used when installing plugins.
-install = { colorscheme = { "dracula" } },
--- Automatically check for plugin updates
-checker = { enabled = true },
+  -- Configure any other settings here. See the documentation for more details.
+  -- Colorscheme that will be used when installing plugins.
+  install = { colorscheme = { "dracula" } },
+  -- Automatically check for plugin updates
+  checker = { enabled = true },
 })
