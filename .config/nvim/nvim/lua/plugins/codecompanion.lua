@@ -1,0 +1,44 @@
+return {
+  "olimorris/codecompanion.nvim",
+  event = "VeryLazy",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-treesitter/nvim-treesitter",
+  },
+  config = function()
+    require("codecompanion").setup({
+      strategies = {
+        chat = {
+          --adapter = "ollama",
+        },
+        inline = {
+          --adapter = "ollama",
+        },
+      },
+      adapters = {
+        opts = {
+          --allow_insecure = true,
+          --proxy = "http://127.0.0.1:4141",
+        },
+        ollama = require("codecompanion.adapters").extend("ollama", {
+          schema = {
+            num_ctx = {
+              default = 2048 * 8,
+            },
+          },
+          env = {
+            url = "https://webai.ohefnawi.net",
+            api_key = "C09AgFzI1BEBtc7AiNy0No71sV9DB6fwyxAo+hRdZac="
+          },
+          headers = {
+            ["Authorization"] = "Bearer ${api_key}",
+            ["Content-Type"] = "application/json",
+          },
+          parameters = {
+            sync = true,
+          },
+        }),
+      },
+    })
+  end,
+}
