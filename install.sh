@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for file in .config/nvim .bash_general.sh .bash_profile scripts .tmux.conf .ideavimrc; do
+for file in .config/nvim .bash_general.sh .bash_profile ./scripts/handyStuff.sh .tmux.conf .ideavimrc; do
   rsync -a "$file" ~/
 done
 
@@ -17,5 +17,7 @@ install_pkg() {
     echo "Unsupported package manager. Please install $* manually."
   fi
 }
+
+# https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/InconsolataLGC.zip
 
 install_pkg fzf bat tmux neovim jq 
