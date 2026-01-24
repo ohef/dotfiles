@@ -4,6 +4,9 @@ for file in .config/nvim/ .bash_general.sh .bash_profile ./scripts/handyStuff.sh
   rsync -a --relative "$file" ~/
 done
 
+rm ~/.config/nvim/init.vim
+ln -s ~/_vimrc ~/.config/nvim/init.vim 
+
 install_pkg() {
   if command -v brew &>/dev/null; then
     brew install "$@"
