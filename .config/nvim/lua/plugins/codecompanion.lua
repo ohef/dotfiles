@@ -15,7 +15,7 @@ return {
           --adapter = "ollama",
         },
       },
-      adapters = { http = {
+      adapters = {
         opts = {
           --allow_insecure = true,
           --proxy = "http://127.0.0.1:4141",
@@ -38,8 +38,7 @@ return {
             sync = true,
           },
         }),
-      } }  ,
+      },
     })
   end,
 }
-
