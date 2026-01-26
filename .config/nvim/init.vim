@@ -1,1 +1,0 @@
-/Users/ohefnawi/_vimrc

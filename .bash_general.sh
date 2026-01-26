@@ -1,5 +1,4 @@
 #!/bin/bash
-
 DIR=~/scripts
 [ -d "$DIR" ] || { echo "Directory '$DIR' not found."; exit 1; }
 
@@ -7,6 +6,9 @@ for f in "$DIR"/*.sh; do
   [ -e "$f" ] || break
   source "$f"
 done
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 alias vim='nvim'
 

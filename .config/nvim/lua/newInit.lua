@@ -19,3 +19,15 @@ vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 
 -- Copy current file to clipboard
 vim.keymap.set('n', '<leader>cy', 'let @*=@%')
+
+-- in your init.lua or lsp config
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = "●", -- Could be '■', '▎', '→', etc.
+    spacing = 2,  -- Space between code and message
+    severity = vim.diagnostic.severity.ERROR, -- Only show errors inline, optional
+  },
+  signs = true,     -- gutter signs
+  underline = true, -- underline errors
+  update_in_insert = false, -- update diagnostics while typing
+})

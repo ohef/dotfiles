@@ -1,8 +1,5 @@
 source ~/.bashrc
 
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
 alias ChromeNoCors="open -a Google\ Chrome --args --remote-debugging-port=9222 --disable-web-security --user-data-dir='~/Library/Application Support/Google/Chrome/Default'"
 alias ChromeNoCorsNoUser="open -a Google\ Chrome --args --remote-debugging-port=9222 --disable-web-security --user-data-dir='~/Library/Application Support/Google/Chrome'"
 alias ChromeNoCorsOrExtensions="open -a Google\ Chrome --args --disable-web-security --disable-extensions --user-data-dir='~/Library/Application Support/Google/Chrome/Default'"
