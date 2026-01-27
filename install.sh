@@ -39,7 +39,6 @@ while getopts "ish" opt; do
 done
 
 for file in .config/nvim/ .bash_general.sh .bash_profile ./scripts/handyStuff.sh .tmux.conf _vimrc .ideavimrc; do
-  eval 'echo $file'
   eval $chosenSyncMethod
 done
 
