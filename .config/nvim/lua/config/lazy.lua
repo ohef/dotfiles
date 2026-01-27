@@ -96,7 +96,6 @@ require("lazy").setup({
     { "tpope/vim-abolish" },
     { "tpope/vim-rhubarb" },
     { "vim-scripts/ReplaceWithRegister" },
-    --{ "LunarWatcher/auto-pairs",        branch = "develop" },
     { "junegunn/fzf",                   build = "./install --all" },
     { "junegunn/fzf.vim" },
     { "junegunn/vim-easy-align" },
@@ -135,11 +134,36 @@ require("lazy").setup({
           }
         })
 
+        vim.lsp.config('lua_ls', {
+          settings = {
+            Lua = {
+              runtime = {
+                version = "LuaJIT",
+              },
+              diagnostics = {
+                globals = { "vim" },
+              },
+              workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false,
+              },
+              telemetry = {
+                enable = false,
+              },
+            },
+          },
+        })
+
         vim.lsp.enable('bashls')
         vim.lsp.enable('ts_ls')
         vim.lsp.enable('lua_ls')
         vim.lsp.enable('pyright')
       end
+    },
+    {
+      "folke/which-key.nvim",
+      event = "VeryLazy",
+      opts = {},
     }
   },
   -- Configure any other settings here. See the documentation for more details.

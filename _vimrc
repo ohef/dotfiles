@@ -16,7 +16,7 @@ set tw=80
 set incsearch
 set number
 set cursorline
-highlight LineNr ctermfg=blue ctermbg=Black
+highlight LineNr ctermfg=blue ctermbg=black
 set termguicolors
 set noswapfile
 
@@ -44,7 +44,7 @@ nnoremap <leader>hn :NERDTreeFind<enter>
 nnoremap <leader>ht :GFiles<enter>
 
 nnoremap <leader>reo :e! $MYVIMRC<enter>
-nnoremap <leader>ree :e! ~/.config/nvim/lua/config/lazy.lua<enter>
+nnoremap <leader>ree :e! ~/.config/nvim/lua/newInit.lua<enter>
 nnoremap <leader>ru :e! ~/.bashrc<enter>
 nnoremap <leader>rp :.,$s/<c-r>"/<c-r>./gc<enter>
 nnoremap <leader>rs :w<enter>:source $MYVIMRC<enter>
@@ -68,24 +68,10 @@ nmap <leader>gr "*gr
 noremap <leader>y "*y
 noremap <leader>p "*p
 
-
 " Move selected lines down with Meta-j in visual mode
 vnoremap <M-j> :m '>+1<CR>gv=gv
 " Move selected lines up with Meta-k in visual mode
 vnoremap <M-k> :m '<-2<CR>gv=gv
-
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>rv  <Plug>(coc-codeaction-selected)
-nmap <leader>rv  <Plug>(coc-codeaction-selected)
 
 nnoremap ' `
 nnoremap Y y$
@@ -129,7 +115,7 @@ imap <A-s> -
 map <A-u> <C-u>zz
 map <A-e> <C-d>zz
 map <A-p> :cnext<enter>
-map <A-.> :cprev<enter>
+map <a-.> :cprev<enter>
 
 
 noremap <F1> :NERDTreeToggle<CR>
@@ -156,6 +142,8 @@ set exrc
 colorscheme dracula
 
 highlight Pmenu ctermfg=white ctermbg=black guibg=#282a36
+hi NormalFloat guibg=#1e1e2e
+hi FloatBorder guibg=#1e1e2e guifg=#89b4fa
 
 if has('gui_running')
   set guifont=Inconsolata:h14
@@ -170,60 +158,6 @@ set ignorecase
 au BufNewFile,BufRead *.txt set spell spelllang=en_us
 
 runtime macros/matchit.vim
-
-"START OF COC RIPPING ------------------------------------------------------------ 
-
-"Coc backends
-"coc-rust-analyzer
-" Use K to show documentation in preview window.
-"nnoremap <silent> K :call ShowDocumentation()<CR>
-
-"function! ShowDocumentation()
-  "if CocAction('hasProvider', 'hover')
-    "call CocActionAsync('doHover')
-  "else
-    "call feedkeys('K', 'in')
-  "endif
-"endfunction
-
-"inoremap <silent><expr> <TAB>
-      "\ coc#pum#visible() ? coc#pum#next(1) :
-      "\ CheckBackspace() ? "\<Tab>" :
-      "\ coc#refresh()
-"inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice.
-"inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-      "\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-"function! CheckBackspace() abort
-  "let col = col('.') - 1
-  "return !col || getline('.')[col - 1]  =~# '\s'
-"endfunction
-
-"" Use <c-space> to trigger completion.
-"if has('nvim')
-  "inoremap <silent><expr> <c-space> coc#refresh()
-"else
-  "inoremap <silent><expr> <c-@> coc#refresh()
-"endif
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-"nmap <silent> [g <Plug>(coc-diagnostic-prev)
-"nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-"nmap <silent> gd <Plug>(coc-definition)
-"nmap <silent> gy <Plug>(coc-type-definition)
-"nmap <silent> gi <Plug>(coc-implementation)
-"nmap <silent> gr <Plug>(coc-references)
-
-" Highlight the symbol and its references when holding the cursor.
-"autocmd CursorHold * silent call CocActionAsync('highlight')
-
-"END OF COC RIPPING ------------------------------------------------------------ 
 
 let g:airline_theme='dracula'
 
@@ -246,9 +180,6 @@ endif
 
 let g:UltiSnipsExpandTrigger="<Nop>"
 
-" Highlight the symbol and its references when holding the cursor.
-"autocmd CursorHold * silent call CocActionAsync('highlight')
-
 let g:EasyMotion_keys='aoeuidhtnsn'
 let g:vim_markdown_no_default_key_mappings = 1
 
@@ -262,7 +193,7 @@ endif
 
 "Begin random stuff that I think is cool that I want to do something with 
 
-"let g:chat_gpt_model='gpt-3.5-turbo'
+" let g:chat_gpt_model='gpt-3.5-turbo'
 " git log --name-status --diff-filter=D -- <path_to_folder>
 "
 " bro remap this it's so cool 
