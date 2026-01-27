@@ -24,4 +24,13 @@ install_pkg() {
 
 # https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/InconsolataLGC.zip
 
-install_pkg fzf bat tmux neovim jq gh npm nodejs ripgrep bash-language-server
+while getopts "i" opt; do
+  case "$opt" in
+    i) 
+	    install_pkg fzf bat tmux neovim jq gh npm nodejs ripgrep bash-language-server
+	    ;;
+    *)
+      echo
+      ;;
+  esac
+done
