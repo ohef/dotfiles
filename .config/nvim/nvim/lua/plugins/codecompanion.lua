@@ -27,7 +27,7 @@ return {
             },
           },
           env = {
-            url = "https://webai.ohefnawi.net",
+            url = "http://ai.ohefn.net",
             api_key = "C09AgFzI1BEBtc7AiNy0No71sV9DB6fwyxAo+hRdZac="
           },
           headers = {

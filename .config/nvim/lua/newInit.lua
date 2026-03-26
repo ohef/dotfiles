@@ -15,10 +15,13 @@ local function toggle_quickfix()
 end
 
 vim.keymap.set('n', '<A-,>', toggle_quickfix)
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 
--- Copy current file to clipboard
-vim.keymap.set('n', '<leader>cy', 'let @*=@%')
+vim.keymap.set("n", "<leader>cy", function()
+  local file = vim.fn.expand("%")
+  local line = vim.fn.line(".")
+  local text = file .. ":" .. line
+  vim.fn.setreg("+", text)
+end, { desc = "Copy file path with line number" })
 
 vim.keymap.set("n", "<leader>k", function()
   vim.diagnostic.open_float(nil, { focus = false })

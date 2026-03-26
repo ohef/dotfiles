@@ -33,7 +33,7 @@ while getopts "ish" opt; do
       chosenSyncMethod=$syncHomeToRepo
 	    ;;
     *)
-      echo
+      echo whatever is here
       ;;
   esac
 done
