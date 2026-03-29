@@ -65,8 +65,8 @@ nnoremap <a-j> <c-d>
 nnoremap <a-k> <c-u>
 
 nmap <leader>gr "*gr
-noremap <leader>y "*y
-noremap <leader>p "*p
+noremap <leader>y "+y
+noremap <leader>p "+p
 
 " Move selected lines down with Meta-j in visual mode
 vnoremap <M-j> :m '>+1<CR>gv=gv
