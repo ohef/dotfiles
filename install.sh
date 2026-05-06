@@ -38,7 +38,7 @@ while getopts "ish" opt; do
   esac
 done
 
-for file in .config/nvim/ .bash_general.sh .bash_profile ./scripts/handyStuff.sh .tmux.conf _vimrc .ideavimrc; do
+for file in .config/nvim/ .config/opencode/ .bash_general.sh .bash_profile ./scripts/handyStuff.sh .tmux.conf _vimrc .ideavimrc; do
   eval $chosenSyncMethod
 done
 
