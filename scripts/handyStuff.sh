@@ -29,3 +29,29 @@ function ohefn::convertMovToGif {
 function ohefn::convertMarkdownToSlackClipboard {
   pandoc "$1" -t html --ascii | textutil -stdin -format html -convert rtf -stdout | pbcopy
 }
+
+function ohefn::npmRun {
+  my_command="npm run $(jq '.scripts | keys[]' package.json | fzf)"
+  eval "$my_command"
+  history -s "$my_command"
+}
+
+function ohefn::addRouteToLocalNetwork {
+  sudo route -n add -net 192.168.1.0/24 -interface en0
+}
+
+function ohefn::askOpenCode {
+  opencode run "$*"
+}
+
+function op {
+  opencode "$*"
+}
+
+function ask {
+  ohefn::askOpenCode "$*"
+}
+
+function ohefn::editOpenCode {
+  vim ~/.config/opencode/opencode.json
+}

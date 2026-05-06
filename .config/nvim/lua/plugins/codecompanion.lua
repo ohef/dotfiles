@@ -7,37 +7,38 @@ return {
   },
   config = function()
     require("codecompanion").setup({
-      strategies = {
+      interactions = {
         chat = {
-          --adapter = "ollama",
+          adapter = {
+            name = "opencode",
+            model =  "gemma4-q8"
+          },
         },
         inline = {
-          --adapter = "ollama",
+          adapter = {
+            name = "openai",
+            model = "gemma4-q8"
+          },
         },
+        agent = {
+          adapter = {
+            name = "opencode",
+            model =  "gemma4-q8"
+          },
+        }
       },
       adapters = {
-        opts = {
-          --allow_insecure = true,
-          --proxy = "http://127.0.0.1:4141",
+        http = {
+          openai = function()
+            return require("codecompanion.adapters").extend("openai", {
+              url = "http://ai.ohefn.org:5002/v1/chat/completions"
+            })
+          end,
         },
-        ollama = require("codecompanion.adapters").extend("ollama", {
-          schema = {
-            num_ctx = {
-              default = 2048 * 8,
-            },
-          },
-          env = {
-            url = "https://webai.ohefnawi.net",
-            api_key = "C09AgFzI1BEBtc7AiNy0No71sV9DB6fwyxAo+hRdZac="
-          },
-          headers = {
-            ["Authorization"] = "Bearer ${api_key}",
-            ["Content-Type"] = "application/json",
-          },
-          parameters = {
-            sync = true,
-          },
-        }),
+        opts = {
+          allow_insecure = true,
+          --proxy = "http://127.0.0.1:4141",
+        }
       },
     })
   end,

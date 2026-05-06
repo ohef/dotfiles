@@ -30,7 +30,7 @@ end, { desc = "Show diagnostic under cursor" })
 -- in your init.lua or lsp config
 vim.diagnostic.config({
   virtual_text = {
-    prefix = "●", -- Could be '■', '▎', '→', etc.
+    prefix = "❗", -- Could be '■', '▎', '→', etc.
     spacing = 2,  -- Space between code and message
     severity = vim.diagnostic.severity.ERROR, -- Only show errors inline, optional
   },

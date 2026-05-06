@@ -1,7 +1,5 @@
 let mapleader="\<space>"
 
-set clipboard=unnamedplus
-
 lua require("newInit")
 
 syntax on

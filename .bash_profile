@@ -1,6 +1,7 @@
 source ~/.bashrc
 
 alias ChromeNoCors="open -a Google\ Chrome --args --remote-debugging-port=9222 --disable-web-security --user-data-dir='~/Library/Application Support/Google/Chrome/Default'"
+alias ChromeRemoteDebugging="open -a Google\ Chrome --args --remote-debugging-port=9222 --user-data-dir='/Users/ohefnawi/RemoteDebugChrome'"
 alias ChromeNoCorsNoUser="open -a Google\ Chrome --args --remote-debugging-port=9222 --disable-web-security --user-data-dir='~/Library/Application Support/Google/Chrome'"
 alias ChromeNoCorsOrExtensions="open -a Google\ Chrome --args --disable-web-security --disable-extensions --user-data-dir='~/Library/Application Support/Google/Chrome/Default'"
 alias ChromeNoExtensions="open -a Google\ Chrome --args --disable-extensions"
