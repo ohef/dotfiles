@@ -1,3 +1,5 @@
+vim.opt.termguicolors = true
+
 require("config.lazy")
 
 vim.opt.grepprg = "rg --vimgrep"
@@ -30,9 +32,10 @@ end, { desc = "Show diagnostic under cursor" })
 -- in your init.lua or lsp config
 vim.diagnostic.config({
   virtual_text = {
-    prefix = "❗", -- Could be '■', '▎', '→', etc.
+    prefix = "◉", -- Could be '■', '▎', '→', etc.
     spacing = 2,  -- Space between code and message
-    severity = vim.diagnostic.severity.ERROR, -- Only show errors inline, optional
+    severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.HINT, vim.diagnostic.severity.INFO, vim.diagnostic.severity.WARN }, -- Show all severities
+    --hl_mode = "blend", -- Use blend for virtual text highlighting
   },
   signs = true,     -- gutter signs
   underline = true, -- underline errors
