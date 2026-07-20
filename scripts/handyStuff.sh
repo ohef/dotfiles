@@ -55,3 +55,20 @@ function ask {
 function ohefn::editOpenCode {
   vim ~/.config/opencode/opencode.json
 }
+
+function ohefn::tmuxPopupOpencode {
+  page_file=/tmp/tmux-page.txt
+  tmux capture-pane -p -S - > "$page_file"
+  tmux display-popup -w 95% -h 95% -E '
+  printf "Input: "
+  read -r input
+  opencode --auto --prompt="$(
+    {
+      cat /tmp/tmux-page.txt
+      echo
+      echo "$input"
+    }
+  )"
+  '
+}
+
