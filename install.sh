@@ -7,13 +7,6 @@ chosenSyncMethod=''
 install_pkg() {
   if command -v brew &>/dev/null; then
     brew install "$@"
-  elif command -v apt &>/dev/null; then
-    #sudo apt update && sudo apt install -y "$@"
-    brew install "$@"
-  elif command -v pacman &>/dev/null; then
-    sudo pacman -Sy --noconfirm "$@"
-  elif command -v dnf &>/dev/null; then
-    sudo dnf install -y "$@"
   else
     echo "Unsupported package manager. Please install $* manually."
   fi
@@ -34,11 +27,12 @@ while getopts "ish" opt; do
 	    ;;
     *)
       echo whatever is here
+      exit 1
       ;;
   esac
 done
 
-for file in .config/nvim/ .config/opencode/ .bash_general.sh .bash_profile ./scripts/handyStuff.sh .tmux.conf _vimrc .ideavimrc; do
+for file in .config/nvim/ .config/opencode/commands/ .config/opencode/opencode.json .bash_general.sh .bash_profile ./scripts/handyStuff.sh .tmux.conf _vimrc .ideavimrc; do
   eval $chosenSyncMethod
 done
 

@@ -1,3 +1,8 @@
+function removeExtension {
+  local name="${1%.*}" # remove extension
+  echo "$name"
+}
+
 # copy a file to the clipboard using fzf and bat for preview
 function ohefn::copyFile {
   cat $(ls | fzf --preview="bat {}") | pbcopy
@@ -53,7 +58,33 @@ function ask {
 }
 
 function ohefn::editOpenCode {
-  vim ~/.config/opencode/opencode.json
+  nvim ~/.config/opencode/opencode.json
+}
+
+# Compress video using H.264, 16fps, CRF 32, and AAC audio at 44k for efficient sharing
+function ohefn::compressVideoToShare {
+  local name="${1%.*}" # remove extension
+
+  ffmpeg -i "$1" \
+    -r 16 \
+    -c:v libvpx-vp9 \
+    -crf 34 \
+    -b:v 0 \
+    -row-mt 1 \
+    -c:a libopus -b:a 48k \
+    "${name}.webm"
+}
+
+function ohefn::openCodeWeb {
+  opencode web --hostname 0.0.0.0 --port 60000
+}
+
+function ohefn::openCodeWeb {
+  opencode web --hostname 0.0.0.0 --port 60000
+}
+
+function ohefn::compressImageFile {
+  magick "$1" -strip -quality 80 "$(removeExtension $1)-output.jpg"
 }
 
 function ohefn::tmuxPopupOpencode {

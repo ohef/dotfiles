@@ -11,19 +11,19 @@ return {
         chat = {
           adapter = {
             name = "opencode",
-            model =  "gemma4-q8"
+            model =  "gemma4-qat"
           },
         },
         inline = {
           adapter = {
             name = "openai",
-            model = "gemma4-q8"
+            model = "gemma4-qat"
           },
         },
         agent = {
           adapter = {
             name = "opencode",
-            model =  "gemma4-q8"
+            model =  "gemma4-qat"
           },
         }
       },

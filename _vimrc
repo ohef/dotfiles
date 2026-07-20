@@ -26,7 +26,7 @@ function! RgWordUnderCursor()
   call feedkeys(wordUnderCursor)
 endfunction
 
-nnoremap <leader>a :Maps<enter>
+"nnoremap <leader>a :Maps<enter>
 nnoremap <A-t> :q!<enter>
 
 nnoremap <leader>fb :Buffers<enter>
@@ -43,7 +43,8 @@ nnoremap <leader>ht :GFiles<enter>
 
 nnoremap <leader>reo :e! $MYVIMRC<enter>
 nnoremap <leader>ree :e! ~/.config/nvim/lua/newInit.lua<enter>
-nnoremap <leader>ru :e! ~/.bashrc<enter>
+nnoremap <leader>ret :e! ~/.tmux.conf<enter>
+nnoremap <leader>reu :e! ~/.bashrc<enter>
 nnoremap <leader>rp :.,$s/<c-r>"/<c-r>./gc<enter>
 nnoremap <leader>rs :w<enter>:source $MYVIMRC<enter>
 
@@ -63,8 +64,8 @@ nnoremap <a-j> <c-d>
 nnoremap <a-k> <c-u>
 
 nmap <leader>gr "*gr
-noremap <leader>y "+y
-noremap <leader>p "+p
+noremap <leader>y "*y
+noremap <leader>p "*p
 
 " Move selected lines down with Meta-j in visual mode
 vnoremap <M-j> :m '>+1<CR>gv=gv

@@ -1,5 +1,9 @@
 source ~/.bashrc
 
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 alias ChromeNoCors="open -a Google\ Chrome --args --remote-debugging-port=9222 --disable-web-security --user-data-dir='~/Library/Application Support/Google/Chrome/Default'"
 alias ChromeRemoteDebugging="open -a Google\ Chrome --args --remote-debugging-port=9222 --user-data-dir='/Users/ohefnawi/RemoteDebugChrome'"
 alias ChromeNoCorsNoUser="open -a Google\ Chrome --args --remote-debugging-port=9222 --disable-web-security --user-data-dir='~/Library/Application Support/Google/Chrome'"

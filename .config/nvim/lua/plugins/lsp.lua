@@ -44,9 +44,29 @@ return {
     vim.lsp.enable('pyright')
 
     pcall(vim.keymap.del, "n", "grr")
+
     vim.keymap.set("n", "gdr", vim.lsp.buf.references, {
       desc = "LSP references",
     })
     vim.keymap.set('n', 'gdd', vim.lsp.buf.definition)
+    vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, {
+      desc = "LSP code action",
+    })
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {
+      desc = "LSP rename",
+    })
+
+    --local hl = vim.api.nvim_get_hl(0, { name = "DiagnosticHint" })
+
+    --vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", {
+      --fg = hl.fg,
+      --bg = hl.bg,
+      --blend = 25,
+    --})
+
+    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", {link = "DiagnosticError", blend = 50})
+    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", {link = "DiagnosticWarn", blend = 50})
+    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", {link = "DiagnosticInfo", blend = 50})
+    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", {link = "DiagnosticHint", blend = 50})
   end
 }
