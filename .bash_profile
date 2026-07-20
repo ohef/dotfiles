@@ -12,3 +12,5 @@ alias ChromeNoExtensions="open -a Google\ Chrome --args --disable-extensions"
 alias ChromeNoCorsCheckout="open /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --no-proxy-server --disable-features=CrossSiteDocumentBlockingAlways,CrossSiteDocumentBlockingIfIsolating --disable-web-security --user-data-dir=/tmp/ChromeUserData/"
 
 source ~/.bash_general.sh
+
+. "$HOME/.local/bin/env"

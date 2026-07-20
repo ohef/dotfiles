@@ -41,3 +41,5 @@ vim.diagnostic.config({
   underline = true, -- underline errors
   update_in_insert = false, -- update diagnostics while typing
 })
+
+vim.opt.relativenumber = true
