@@ -46,15 +46,15 @@ function ohefn::addRouteToLocalNetwork {
 }
 
 function ohefn::askOpenCode {
-  opencode run "$*"
+  opencode run "$@"
 }
 
 function op {
-  opencode "$*"
+  opencode "$@"
 }
 
 function ask {
-  ohefn::askOpenCode "$*"
+  ohefn::askOpenCode "$@"
 }
 
 function ohefn::editOpenCode {
@@ -80,7 +80,7 @@ function ohefn::openCodeWeb {
 }
 
 function ohefn::openCodeWeb {
-  opencode web --hostname 0.0.0.0 --port 60000
+  opencode web --hostname 0.0.0.0 --port 60000 "$@"
 }
 
 function ohefn::compressImageFile {
