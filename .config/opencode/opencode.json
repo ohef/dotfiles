@@ -22,7 +22,8 @@
       "options": {
         "baseURL": "https://llama.ai.ohefn.org/v1",
         "modelsDiscovery" : {
-          "enabled" : true
+          "enabled" : true,
+          "modelInfoFormat": "llama-swap"
         }
       }
     }
